@@ -35,8 +35,10 @@ export default function SideBar() {
     pages[0].name
   })
 
+  RootLayout
+
   return (
-    <RootLayout>
+    <>
       <div className={styles.sidenav}>
         <img
           className={styles.imgSideNav}
@@ -56,6 +58,6 @@ export default function SideBar() {
           </li>
         </ul>
       </div>
-    </RootLayout>
+    </>
   );
 }
