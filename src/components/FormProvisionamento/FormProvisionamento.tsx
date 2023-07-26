@@ -346,8 +346,6 @@ export default function FormProvisionamento() {
             type="submit"
             id="btnEnviaPlanilha"
             name="btnEnviaPlanilha"
-            value={saveSheetDB}
-            onClick={handleChangeSaveSheetsDb}
             form="provisionamentoForm"
             className={styles.btnProvisionamento}
           >
