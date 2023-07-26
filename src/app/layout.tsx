@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+const metadata = {
   title: 'Provisionamento FTTH Naxos Telecom',
   description: 'Página voltada para a Empresa Naxos Telecom, para estar realizando ativações de clientes na rede FTTH na OLT Nokia utilizando ONU/ONT',
 }
