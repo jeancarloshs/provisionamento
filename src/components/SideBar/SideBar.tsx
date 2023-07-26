@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as React from "react";
 import styles from "./SideBar.module.css";
-import metadata from "@/app/layout";
 import RootLayout from "@/app/layout";
 import Provisionamento from "@/pages/provisionamento";
 
@@ -36,10 +35,8 @@ export default function SideBar() {
     pages[0].name
   })
 
-  metadata;
-
   return (
-    <>
+    <RootLayout>
       <div className={styles.sidenav}>
         <img
           className={styles.imgSideNav}
@@ -59,6 +56,6 @@ export default function SideBar() {
           </li>
         </ul>
       </div>
-    </>
+    </RootLayout>
   );
 }
