@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const URL_API = process.env.NEXT_PUBLIC_URL_API_SHEETS_DB;
+
 export default async function saveDbModel(
   clientName: string,
   externalTechnician: string,
@@ -11,7 +13,7 @@ export default async function saveDbModel(
 ) {
   try {
     const response = await axios.post(
-    "https://sheetdb.io/api/v1/f8t5fv0yuh1xs",
+    `${URL_API}/f8t5fv0yuh1xs`,
       {
         data: {
           "CLIENTES": clientName,
