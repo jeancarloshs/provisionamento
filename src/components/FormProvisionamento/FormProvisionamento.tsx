@@ -73,6 +73,8 @@ export default function FormProvisionamento() {
     let externalTechnician = provisionamentoState.externalTechnician.trim();
     let internalTechnician = provisionamentoState.internalTechnician.trim();
 
+    serialNumber = `${serialNumber.slice(0, 3)}:${serialNumber.slice(4, serialNumber.length -1)}`;
+
     let data: any = await provisioningModel(clientName, clientAddress, equipmentAssets, serialNumber);
     setResProvisioning(data)
     // console.log("DATA", data)
