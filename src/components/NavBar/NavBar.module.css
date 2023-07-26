@@ -1,0 +1,36 @@
+.nav {
+    margin-top: 2%;
+    margin-left: 220px;
+    padding: 0px 10px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.ul > li {
+    margin-right: 10px;
+}
+
+.ul > li::after {
+    content: "";
+    display: block;
+    width: 88%;
+    height: 1px;
+    background: rgb(208,229,255);
+    background: linear-gradient(130deg, rgba(208,229,255,0.01) 0%, rgba(143,151,255,0.07) 35%, rgba(67,109,255,0.19) 100%);
+}
+
+.linksLi {
+    color: white;
+    padding: 10px 10px 10px 0;
+    transition: all 0.5s ease;
+}
+
+.linksLi:hover {
+    color: rgb(255, 200, 200);
+}
