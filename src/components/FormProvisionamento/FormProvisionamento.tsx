@@ -282,6 +282,7 @@ export default function FormProvisionamento() {
               id="suporte"
               className={styles.formSelect}
               value={provisionamentoState.internalTechnician}
+              required
               onChange={(event) =>
                 handleOnChangeProvisioning(event, "internalTechnician")
               }
