@@ -48,7 +48,7 @@ export default function FormProvisionamento() {
     setResProvisioning(event.target.value);
   };
 
-  const handleChangeSaveSheetsDb = async (event: any) => {
+  const handleChangeSaveSheetsDb = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
