@@ -286,8 +286,8 @@ export default function FormProvisionamento() {
                 handleOnChangeProvisioning(event, "internalTechnician")
               }
             >
-              <option value="{userInternalOptions}">{userInternalOptions}</option>
-{/*               {userInternalOptions} */}
+              <option value="">Suporte</option>
+              {userInternalOptions}
             </select>
             <button
               type="submit"
