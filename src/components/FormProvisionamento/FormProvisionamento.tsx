@@ -75,7 +75,7 @@ export default function FormProvisionamento() {
 
     serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(4, serialNumber.length)}`;
 
-    let data: any = await provisioningModel(clientName, clientAddress, equipmentAssets, serialNumber);
+    let data: any = await provisioningModel(clientName, clientAddress, positioning, serialNumber);
     setResProvisioning(data)
     // console.log("DATA", data)
   };
