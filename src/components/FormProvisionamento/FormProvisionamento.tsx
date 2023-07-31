@@ -14,6 +14,7 @@ import saveDbModel from "@/api/models/SheetsDB";
 import copy from "copy-to-clipboard";
 import RemoveOnuModel from "@/api/models/Remove";
 import SearchByMac from "@/api/models/SearchByMac";
+import SearchByPositioning from "@/api/models/SearchByPositioning";
 
 // type Props = {
 //   title: string;
@@ -39,6 +40,9 @@ export default function FormProvisionamento() {
   const [removingOnuState, setRemovingOnuState] = useState({
     positioning: "",
   });
+  const [searchByPositioningState, setSearchByPositioningState] = useState({
+    positioning: "",
+  })
   const [searchByMacState, setSearchByMacState] = useState({
     serialNumber: "",
   });
@@ -57,6 +61,13 @@ export default function FormProvisionamento() {
     setRemovingOnuState({
       ...removingOnuState,
       [key]: event.target.value
+    })
+  }
+
+  const handlaOnChangeSearchByPositioning = (event: any, key: any) => {
+    setSearchByPositioningState({
+      ...searchByPositioningState,
+      [key]: event?.target.value
     })
   }
 
@@ -109,6 +120,14 @@ export default function FormProvisionamento() {
     let positioning = provisionamentoState.positioning.trim();
 
     let data: any = RemoveOnuModel(positioning);
+    setResProvisioning(data)
+  }
+
+  const handleOnSearchByPositioning = async (event: any) => {
+    event.preventDefault();
+    let positioning = provisionamentoState.positioning.trim();
+
+    let data: any = SearchByPositioning(positioning);
     setResProvisioning(data)
   }
 
@@ -362,6 +381,7 @@ export default function FormProvisionamento() {
               type="submit"
               id="btnMac"
               name="btnMac"
+              onClick={handleOnSearchByPositioning}
               className={styles.btn}
             >
               Mac
