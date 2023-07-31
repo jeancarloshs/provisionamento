@@ -13,6 +13,7 @@ import provisioningModel from "@/api/models/Provisioning";
 import saveDbModel from "@/api/models/SheetsDB";
 import copy from "copy-to-clipboard";
 import RemoveOnuModel from "@/api/models/Remove";
+import SearchByMac from "@/api/models/SearchByMac";
 
 // type Props = {
 //   title: string;
@@ -38,6 +39,9 @@ export default function FormProvisionamento() {
   const [removingOnuState, setRemovingOnuState] = useState({
     positioning: "",
   });
+  const [searchByMacState, setSearchByMacState] = useState({
+    serialNumber: "",
+  });
   const [resProvisioning, setResProvisioning] = useState("");
   const [saveSheetDB, setSaveSheetsDB] = useState("");
   const [copyText, setCopyText] = useState('');
@@ -52,6 +56,13 @@ export default function FormProvisionamento() {
   const handleOnChangeRemovingOnu = (event: any, key: any) => {
     setRemovingOnuState({
       ...removingOnuState,
+      [key]: event.target.value
+    })
+  }
+
+  const handleOnChangeSearchByMac = (event: any, key: any) => {
+    setSearchByMacState({
+      ...searchByMacState,
       [key]: event.target.value
     })
   }
@@ -98,6 +109,14 @@ export default function FormProvisionamento() {
     let positioning = provisionamentoState.positioning.trim();
 
     let data: any = RemoveOnuModel(positioning);
+    setResProvisioning(data)
+  }
+
+  const handleOnSearchByMac = async (event: any) => {
+    event.preventDefault();
+    let serialNumber = provisionamentoState.serialNumber.trim();
+
+    let data: any = SearchByMac(serialNumber)
     setResProvisioning(data)
   }
 
@@ -351,6 +370,7 @@ export default function FormProvisionamento() {
               type="submit"
               id="btnLocalizar"
               name="btnProvisionar"
+              onClick={handleOnSearchByMac}
               className={styles.btn}
             >
               Localizar
