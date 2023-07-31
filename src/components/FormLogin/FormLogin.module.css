@@ -97,7 +97,7 @@
   margin: 0 auto;
 }
 
-@media (max-width: 390px) {
+@media (max-width: 390px) and (min-width: 376px) {
   .form {
     width: 100%;
   }
@@ -110,7 +110,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 375px) and (min-width: 351px) {
   .form {
     width: 100%;
   }
