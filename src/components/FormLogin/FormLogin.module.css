@@ -1,99 +1,120 @@
 .section {
-    width: 50vw;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
-    flex-direction: column;
-    /* background-color: red; */
-    margin-top: 13rem;
+  width: 50vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+  margin-top: 13rem;
 }
 
 .box {
-    padding: 5% 2%;
-    border-radius: 1.4%;
-    /* box-shadow: 0 0 30px rgb(41, 22, 101); */
-    /* background: linear-gradient(130deg, rgba(208,229,255,0.01) 0%, rgba(143,151,255,0.07) 35%, rgba(67,109,255,0.19) 100%); */
-  }
+  padding: 5% 2%;
+  border-radius: 1.4%;
+  /* box-shadow: 0 0 30px rgb(41, 22, 101); */
+  /* background: linear-gradient(130deg, rgba(208,229,255,0.01) 0%, rgba(143,151,255,0.07) 35%, rgba(67,109,255,0.19) 100%); */
+}
 
 .container {
-    width: 400px;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
-    /* background-color: red; */
+  width: 400px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  /* background-color: red; */
 }
 
 .imgLogo {
-    width: 350px;
-    height: 130px;
-    margin: 0 auto;
-    /* background-color: red; */
+  width: 350px;
+  height: 130px;
+  margin: 0 auto;
+  /* background-color: red; */
 }
 
 .form {
-    margin: 5px 0;
-    padding: 5px 0;
+  margin: 5px 0;
+  padding: 5px 0;
 }
 
 .inputValue {
-    color: white;
-    background-color: #1D2432;
-    border-radius: 5px !important;
+  color: white;
+  background-color: #1d2432;
+  border-radius: 5px !important;
 }
 
 .inputValue:focus {
-    box-shadow: 0 0 0 0;
-    outline: 0;
-    border: 2px solid #6366F1;
-    /* border-color: #4F46E5; */
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  border: 2px solid #6366f1;
+  /* border-color: #4F46E5; */
 }
 
 .container > .form > input {
-    width: 388px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-    padding: 5% 0;
-    border-radius: 5px;
-    padding-left: 10px;
+  width: 388px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  padding: 5% 0;
+  border-radius: 5px;
+  padding-left: 10px;
 }
 
 .inputLogin {
-    width: 388px;
-    height: 40px;
-    /* background-color: #6366F1; */
-    background-color: #FBA828;
-    /* color: white; */
-    color: #111827;
-    font-weight: 600;
-    border-radius: 5px;
-    margin-top: 10px;
-    transition: all 0.5s ease;
+  width: 388px;
+  height: 40px;
+  /* background-color: #6366F1; */
+  background-color: #fba828;
+  /* color: white; */
+  color: #111827;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: all 0.5s ease;
 }
 
 .inputLogin:hover {
-    /* background-color: #393b8a; */
-    background-color: #BC4920;
+  /* background-color: #393b8a; */
+  background-color: #bc4920;
 }
 
-
 .formFormulario {
-    width: 105%;
-    padding-left: 5%;
-    padding-bottom: 5%;
+  width: 105%;
+  padding-left: 5%;
+  padding-bottom: 5%;
 }
 
 .spinner {
-    width: 24px; /* Defina o valor desejado para o spinner */
-    height: 24px; /* Defina o valor desejado para o spinner */
+  width: 24px; /* Defina o valor desejado para o spinner */
+  height: 24px; /* Defina o valor desejado para o spinner */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+@media (max-width: 375px) {
+  .form {
+    width: 100%;
+  }
+
+  .container > .form > input {
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 15px auto;
   }
+
+  .container > .form > button {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+  }
+}

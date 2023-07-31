@@ -11,6 +11,7 @@ import NavBar from "../NavBar/NavBar";
 import tokenVerify from "@/api/middleware/tokenVerify";
 import provisioningModel from "@/api/models/Provisioning";
 import saveDbModel from "@/api/models/SheetsDB";
+import copy from "copy-to-clipboard";
 
 // type Props = {
 //   title: string;
@@ -35,6 +36,7 @@ export default function FormProvisionamento() {
   });
   const [resProvisioning, setResProvisioning] = useState("");
   const [saveSheetDB, setSaveSheetsDB] = useState("");
+  const [copyText, setCopyText] = useState('');
 
   const handleOnChangeProvisioning = (event: any, key: any) => {
     setProvisionamentoState({
@@ -62,7 +64,7 @@ export default function FormProvisionamento() {
     setSaveSheetsDB(saveSheetDB);
   };
 
-  const handleOnProvisioning = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleOnProvisioning = async (event: any) => {
     event.preventDefault();
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
@@ -79,6 +81,12 @@ export default function FormProvisionamento() {
     setResProvisioning(data)
     // console.log("DATA", data)
   };
+
+  const handleCopyText = () => {
+    // event.preventDefault()
+    alert("Copiado para area de transferencia!!")
+    copy(resProvisioning);
+ } 
   
   const handleLimparDados = () => {
     setProvisionamentoState(
@@ -177,7 +185,7 @@ export default function FormProvisionamento() {
       <NavBar />
       <div className={styles.main}>
         <div className={styles.containerForm}>
-          <form action="#" method="POST" onSubmit={handleOnProvisioning} className={styles.formProvisionamento}>
+          <form method="POST" onSubmit={handleOnProvisioning} className={styles.formProvisionamento}>
             <label htmlFor="nome"></label>
             <input
               className={styles.inputProvisionamento}
@@ -292,10 +300,12 @@ export default function FormProvisionamento() {
               <option value="">Suporte</option>
               {userInternalOptions}
             </select>
+            </form>
             <button
               type="submit"
               id="btnProvisionar"
               name="btnProvisionar"
+              onClick={handleOnProvisioning}
               className={styles.btn}
             >
               Provisionar
@@ -325,7 +335,6 @@ export default function FormProvisionamento() {
             >
               Localizar
             </button>
-          </form>
         </div>
         <div className={styles.codigoGerado}>
           <textarea
@@ -359,14 +368,7 @@ export default function FormProvisionamento() {
             type="submit"
             id="btnCopiar"
             name="btnCopiar"
-            className={styles.btnProvisionamento}
-          >
-            Copiar
-          </button>
-          <button
-            type="submit"
-            id="btnCopiar"
-            name="btnCopiar"
+            onClick={handleCopyText}
             className={styles.btnProvisionamento}
           >
             Copiar
