@@ -97,6 +97,19 @@
   margin: 0 auto;
 }
 
+@media (max-width: 390px) {
+  .form {
+    width: 100%;
+  }
+
+  .container > .form > input,
+  .container > .form > button {
+    width: 90%;
+    display: block;
+    margin: 15px auto;
+  }
+}
+
 @media (max-width: 375px) {
   .form {
     width: 100%;
