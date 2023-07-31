@@ -240,7 +240,6 @@ export default function FormProvisionamento() {
 
   return (
     <>
-      <NavBar />
       <div className={styles.main}>
         <div className={styles.containerForm}>
           <form method="POST" onSubmit={handleOnProvisioning} className={styles.formProvisionamento}>

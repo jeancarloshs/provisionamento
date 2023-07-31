@@ -1,21 +1,21 @@
-.container {
+/* .container {
     display: flex;
     flex: 2;
-}
+} */
 
 .nav {
-    margin: 2% auto 0;
+    /* margin: 2% auto 0; */
     /* margin-top: 2%; */
     /* margin-left: 220px; */
     padding: 0px 10px;
     max-width: 1200px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .ul {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .ul > li {
@@ -35,6 +35,7 @@
     color: white;
     padding: 10px 10px 10px 0;
     transition: all 0.5s ease;
+    font-size: 16px !important;
 }
 
 .linksLi:hover {
