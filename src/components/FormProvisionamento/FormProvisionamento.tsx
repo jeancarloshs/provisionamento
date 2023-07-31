@@ -12,6 +12,7 @@ import tokenVerify from "@/api/middleware/tokenVerify";
 import provisioningModel from "@/api/models/Provisioning";
 import saveDbModel from "@/api/models/SheetsDB";
 import copy from "copy-to-clipboard";
+import RemoveOnuModel from "@/api/models/Remove";
 
 // type Props = {
 //   title: string;
@@ -34,6 +35,9 @@ export default function FormProvisionamento() {
     externalTechnician: "",
     internalTechnician: "",
   });
+  const [removingOnuState, setRemovingOnuState] = useState({
+    positioning: "",
+  });
   const [resProvisioning, setResProvisioning] = useState("");
   const [saveSheetDB, setSaveSheetsDB] = useState("");
   const [copyText, setCopyText] = useState('');
@@ -44,6 +48,13 @@ export default function FormProvisionamento() {
       [key]: event.target.value,
     });
   };
+
+  const handleOnChangeRemovingOnu = (event: any, key: any) => {
+    setRemovingOnuState({
+      ...removingOnuState,
+      [key]: event.target.value
+    })
+  }
 
   const handleChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
@@ -81,6 +92,14 @@ export default function FormProvisionamento() {
     setResProvisioning(data)
     // console.log("DATA", data)
   };
+
+  const handleOnRemovingOnu = async (event: any) => {
+    event.preventDefault();
+    let positioning = provisionamentoState.positioning.trim();
+
+    let data: any = RemoveOnuModel(positioning);
+    setResProvisioning(data)
+  }
 
   const handleCopyText = () => {
     // event.preventDefault()
@@ -314,6 +333,7 @@ export default function FormProvisionamento() {
               type="submit"
               id="btnRemover"
               name="btnProvisionar"
+              onClick={handleOnRemovingOnu}
               className={styles.btn}
             >
               Remover
