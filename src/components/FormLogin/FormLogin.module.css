@@ -109,3 +109,22 @@
     margin: 15px auto;
   }
 }
+
+@media (max-width: 350px) {
+  .imgLogo {
+    width: 175px;
+    height: 65px;
+    margin: 0 auto;
+  }
+
+  .form {
+    width: 350px;
+  }
+
+  .container > .form > input,
+  .container > .form > button {
+    width: 90%;
+    display: block;
+    margin: 15px auto;
+  }
+}
