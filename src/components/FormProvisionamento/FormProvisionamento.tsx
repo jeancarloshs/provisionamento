@@ -134,6 +134,7 @@ export default function FormProvisionamento() {
   const handleOnSearchByMac = async (event: any) => {
     event.preventDefault();
     let serialNumber = provisionamentoState.serialNumber.trim();
+    serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(4, serialNumber.length)}`;
 
     let data: any = SearchByMac(serialNumber)
     setResProvisioning(data)
