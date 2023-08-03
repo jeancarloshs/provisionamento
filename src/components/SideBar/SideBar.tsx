@@ -12,12 +12,13 @@ let pages = [
   { name: "/", rota: "/" },
   { name: "/home", rota: "home" },
   { name: "/provisionamento", rota: "Provisionamento" },
+  { name: "/opcoes", rota: "Opções"}
 ];
 
 const links = [
   { name: "Home", href: pages[1].name, icon: "" },
   { name: "Ativação ▼", href: pages[2].name, icon: "" },
-  { name: "Opções", href: "#", icon: "" },
+  { name: "Opções", href: pages[3].name, icon: "" },
   { name: "Ajuda", href: "#", icon: "" },
 ];
 
