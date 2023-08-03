@@ -2,13 +2,18 @@
 import { useState, useEffect } from "react";
 import styles from "./NavBar.module.css";
 
-let pages = [{ name: "/provisionamento", rota: "Provisionamento" }];
+let pages = [
+  { name: "/provisionamento", rota: "Provisionamento" },
+  { name: "/bridge", rota: "Bridge"},
+  { name: "/telefonia", rota: "Telefonia"},
+  { name: "/vlan", rota: "Vlan"}
+];
 
 const links = [
   { name: "Comum", href: pages[0].name, icon: "" },
-  { name: "Bridge", href: "#", icon: "" },
-  { name: "Telefonia", href: "#", icon: "" },
-  { name: "Vlan", href: "#", icon: "" },
+  { name: "Bridge", href: pages[1].name, icon: "" },
+  { name: "Telefonia", href: pages[2].name, icon: "" },
+  { name: "Vlan", href: pages[3].name, icon: "" },
 ];
 
 const navBarResults: any = links.map((link, index) => (

@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import * as React from "react";
 import styles from "./FormProvisionamento.module.css";
-import UserLoged from "@/api/controller/UserLoged";
-import externalTechnician from "@/api/controller/ExternalTechnician";
-import servicesTypes from "@/api/controller/ServicesTypes";
+import UserLoged from "@/api/controller/UserLogedController";
+import externalTechnician from "@/api/controller/ExternalTechnicianController";
+import servicesTypes from "@/api/controller/ServicesTypesController";
 import NavBar from "../NavBar/NavBar";
 import tokenVerify from "@/api/middleware/tokenVerify";
 import provisioningModel from "@/api/models/Provisioning";
@@ -15,11 +15,6 @@ import copy from "copy-to-clipboard";
 import RemoveOnuModel from "@/api/models/Remove";
 import SearchByMac from "@/api/models/SearchByMac";
 import SearchByPositioning from "@/api/models/SearchByPositioning";
-
-// type Props = {
-//   title: string;
-//   name: string;
-// };
 
 export default function FormProvisionamento() {
   const [token, setToken] = useState<String | null>("");
