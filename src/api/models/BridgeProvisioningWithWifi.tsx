@@ -17,6 +17,7 @@ configure interface port uni:${positioning}/1/1 admin-up
 configure bridge port ${positioning}/1/1 max-unicast-mac 64
 configure bridge port ${positioning}/1/1 vlan-id ${vlan}
 configure bridge port ${positioning}/1/1 pvid ${vlan}
-exit all \n`
+exit all 
+\n`
     );
 }

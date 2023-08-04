@@ -9,7 +9,8 @@ export default async function TellProvisioningModel(
     telephone: string,
     passwordSIP: string
 ) {
-    return (`configure equipment ont interface ${positioning} sw-ver-pland auto desc1 "${clientName}" desc2 "${clientAddress}" sernum ${equipmentAssets} sw-dnload-version auto voip-allowed iphost pland-cfgfile1 auto dnload-cfgfile1 auto
+    return (
+`configure equipment ont interface ${positioning} sw-ver-pland auto desc1 "${clientName}" desc2 "${clientAddress}" sernum ${equipmentAssets} sw-dnload-version auto voip-allowed iphost pland-cfgfile1 auto dnload-cfgfile1 auto
 configure equipment ont interface ${positioning} admin-state up
 configure equipment ont slot ${positioning}/2 planned-card-type pots plndnumdataports 0 plndnumvoiceports 2 admin-state up
 configure equipment ont slot ${positioning}/14 planned-card-type veip plndnumdataports 1 plndnumvoiceports 0  admin-state up
@@ -32,6 +33,7 @@ configure voice ont voice-port ${positioning}/2/1 admin-state locked
 configure voice ont voice-port ${positioning}/2/1 custinfo ont_porta_1 voipconfig sip pots-pwr-timer 300 rx-gain 1.000000 tx-gain 2.000000 impedance 600 voip-media-prof 4
 configure voice ont voice-sip-port ${positioning}/2/1 user-aor ${userSIP} display-name ${telephone} val-scheme md5-digest user-name ${userSIP} password plain:${passwordSIP} realm asterisk voice-mail-prof none ntwk-dp-prof 4 app-serv-prof 4 ac-code-prof 4
 configure voice ont voice-port ${positioning}/2/1 admin-state unlocked
-exit all \n`
+exit all 
+\n`
     );
 }

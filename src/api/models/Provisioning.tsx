@@ -18,5 +18,6 @@ configure interface port uni:${positioning}/14/1 admin-up
 configure bridge port ${positioning}/14/1 max-unicast-mac 4
 configure bridge port ${positioning}/14/1 vlan-id 1005 tag single-tagged
 configure bridge port ${positioning}/14/1 vlan-id 202 tag single-tagged
-exit all \n`;
+exit all 
+\n`;
 }

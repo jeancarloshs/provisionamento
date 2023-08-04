@@ -2,12 +2,14 @@
 import React from "react";
 import SideBar from "@/components/SideBar/SideBar";
 import tokenVerify from "@/api/middleware/tokenVerify";
+import FormBridge from "@/components/FormBridge/FormBridge";
 
 const Bridge = () => {
   tokenVerify()
   return (
     <>
       <SideBar></SideBar>
+      <FormBridge></FormBridge>
     </>
   );
 };
