@@ -4,13 +4,13 @@ export default async function TellProvisioningModel(
     positioning: string,
     clientName: string,
     clientAddress: string,
-    equipmentAssets: string,
+    serialNumber: string,
     userSIP: string,
     telephone: string,
     passwordSIP: string
 ) {
     return (
-`configure equipment ont interface ${positioning} sw-ver-pland auto desc1 "${clientName}" desc2 "${clientAddress}" sernum ${equipmentAssets} sw-dnload-version auto voip-allowed iphost pland-cfgfile1 auto dnload-cfgfile1 auto
+`configure equipment ont interface ${positioning} sw-ver-pland auto desc1 "${clientName}" desc2 "${clientAddress}" sernum ${serialNumber} sw-dnload-version auto voip-allowed iphost pland-cfgfile1 auto dnload-cfgfile1 auto
 configure equipment ont interface ${positioning} admin-state up
 configure equipment ont slot ${positioning}/2 planned-card-type pots plndnumdataports 0 plndnumvoiceports 2 admin-state up
 configure equipment ont slot ${positioning}/14 planned-card-type veip plndnumdataports 1 plndnumvoiceports 0  admin-state up
