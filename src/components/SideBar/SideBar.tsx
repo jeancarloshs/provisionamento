@@ -12,14 +12,15 @@ let pages = [
   { name: "/", rota: "/" },
   { name: "/home", rota: "home" },
   { name: "/provisionamento", rota: "Provisionamento" },
-  { name: "/opcoes", rota: "Opções"}
+  { name: "/opcoes", rota: "Opções"},
+  { name: "/ajuda", rota: "Ajuda"}
 ];
 
 const links = [
   { name: "Home", href: pages[1].name, icon: "" },
   { name: "Ativação ▼", href: pages[2].name, icon: "" },
   { name: "Opções", href: pages[3].name, icon: "" },
-  { name: "Ajuda", href: "#", icon: "" },
+  { name: "Ajuda", href: pages[4].name, icon: "" }
 ];
 
 export default function SideBar() {
