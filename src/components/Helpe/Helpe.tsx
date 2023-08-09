@@ -38,19 +38,19 @@ export default function Helpe() {
       </li>
     ))
   ) : (
-    <li>Carregando...</li>
+    <li><p>Carregando...</p></li>
   );
 
   return (
     <>
       <div className={styles.main}>
-        {servicesTypesOptions.length > 0 ? (
+        {/* {servicesTypesOptions.length > 0 ? ( */}
           <ul key={servicesTypesOptions.length}>
             {servicesTypesOptions}
           </ul>
-        ) : (
+        {/* ) : (
           <p>Nenhum arquivo disponível</p>
-        )}
+        )} */}
       </div>
     </>
   );
