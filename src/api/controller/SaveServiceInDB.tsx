@@ -17,13 +17,16 @@ export default async function SaveServiceInDB(
   }
 
   let bodyContent = JSON.stringify({
-    "clientes": `${clientName}`,
+    "nomeCliente": `${clientName}`,
+    "enderecoCliente": "",
     "tecnicoRua": `${externalTechnician}`,
-    "numberSerial": `${equipmentAssets}`,
-    "tipoDeAtivacao": `${serviceType}`,
+    "numeroDeSerie": `${equipmentAssets}`,
     "posicionamento": `${positioning}`,
-    "patrimonioNX": `${equipmentAssets}`,
-    "tecnicoSup": `${internalTechnician}`
+    "patrimonioNaxos": `${equipmentAssets}`,
+    "tecnicoSup": `${internalTechnician}`,
+    "created_at": "",
+    "update_at": "",
+    "tipoDeServico": `${serviceType}`,
   });
 
   let response = await fetch(`${urlApi}/provisionaClientes`, {
