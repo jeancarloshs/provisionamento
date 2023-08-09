@@ -8,6 +8,7 @@ const Opcoes = () => {
   return (
     <>
       <SideBar></SideBar>
+      <Opcoes></Opcoes>
     </>
   );
 };
