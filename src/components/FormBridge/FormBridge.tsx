@@ -15,6 +15,8 @@ import copy from "copy-to-clipboard";
 import RemoveOnuModel from "@/api/models/Remove";
 import SearchByMac from "@/api/models/SearchByMac";
 import SearchByPositioning from "@/api/models/SearchByPositioning";
+import BridgeProvisioningWithWifiModel from "@/api/models/BridgeProvisioningWithWifi";
+import BridgeProvisioningWithoutWifiModel from "@/api/models/BridgeProvisioningWithoutWifi";
 
 export default function FormBridge() {
     const [token, setToken] = useState<String | null>("");
@@ -89,7 +91,7 @@ export default function FormBridge() {
         let positioning = provisionamentoState.positioning.trim();
         let vlan = provisionamentoState.vlan.trim();
         let servicesType = provisionamentoState.serviceType.trim();
-        let onuType = provisionamentoState.serviceType.trim();
+        let onuType = provisionamentoState.onuType.trim();
         let externalTechnician = provisionamentoState.externalTechnician.trim();
         let internalTechnician = provisionamentoState.internalTechnician.trim();
         let saveSheetDB: any = await saveDbModel(clientName, externalTechnician, serialNumber, positioning, equipmentAssets, servicesType, internalTechnician)
@@ -104,15 +106,25 @@ export default function FormBridge() {
         let serialNumber = provisionamentoState.serialNumber.trim();
         let positioning = provisionamentoState.positioning.trim();
         let vlan = provisionamentoState.vlan.trim();
-        let onuType = provisionamentoState.vlan.trim();
+        let onuType = provisionamentoState.onuType.trim();
         let servicesType = provisionamentoState.serviceType.trim();
         let externalTechnician = provisionamentoState.externalTechnician.trim();
         let internalTechnician = provisionamentoState.internalTechnician.trim();
 
         serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(4, serialNumber.length)}`;
 
-        let data: any = await provisioningModel(clientName, clientAddress, serialNumber, positioning);
-        setResProvisioning(data)
+        if(onuType.valueOf() == 'Nokia G-240WF') {
+            let data: any = await BridgeProvisioningWithWifiModel(positioning, clientName, clientAddress, equipmentAssets, vlan);
+            setResProvisioning(data)
+            console.log('Nokia G-240WF Com Wi-Fi', onuType);
+        } else {
+            let data: any = await BridgeProvisioningWithoutWifiModel(positioning, clientName, clientAddress, equipmentAssets, vlan);
+            setResProvisioning(data)
+            console.log(' Nokia G-010G-P Sem Wi-fi', onuType);
+        }
+
+        // let data: any = await provisioningModel(clientName, clientAddress, serialNumber, positioning);
+        // setResProvisioning(data)
         // console.log("DATA", data)
     };
 
@@ -342,7 +354,6 @@ export default function FormBridge() {
                             required
                         >
                             <option value="">Modelo de ONU</option>
-                            {/* {servicesTypesOptions} */}
                             <option value="Nokia G-240WF" id="NokiaWifi">Nokia G-240WF (Com WI-FI)</option>
                             <option value="Nokia G-010G-P" id="NokiaLan">Nokia G-010G-P (Sem WI-FI)</option>
                         </select>

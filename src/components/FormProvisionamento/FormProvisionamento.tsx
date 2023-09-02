@@ -15,6 +15,7 @@ import copy from "copy-to-clipboard";
 import RemoveOnuModel from "@/api/models/Remove";
 import SearchByMac from "@/api/models/SearchByMac";
 import SearchByPositioning from "@/api/models/SearchByPositioning";
+import SaveServiceInDB from "@/api/controller/SaveServiceInDB";
 
 export default function FormProvisionamento() {
   const [token, setToken] = useState<String | null>("");
@@ -43,6 +44,7 @@ export default function FormProvisionamento() {
   });
   const [resProvisioning, setResProvisioning] = useState("");
   const [saveSheetDB, setSaveSheetsDB] = useState("");
+  const [saveSupaDB, setSaveSupaDB] = useState("");
   const [copyText, setCopyText] = useState('');
 
   const handleOnChangeProvisioning = (event: any, key: any) => {
@@ -80,15 +82,18 @@ export default function FormProvisionamento() {
 
   const handleChangeSaveSheetsDb = async (event: any) => {
     event.preventDefault();
+    const token = sessionStorage.getItem("Token") as string;
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
     let equipmentAssets = provisionamentoState.equipmentAssets.trim();
     let serialNumber = provisionamentoState.serialNumber.trim();
     let positioning = provisionamentoState.positioning.trim();
-    let servicesType = provisionamentoState.serviceType.trim();
-    let externalTechnician = provisionamentoState.externalTechnician.trim();
-    let internalTechnician = provisionamentoState.internalTechnician.trim();
+    let servicesType: any = provisionamentoState.serviceType.trim();
+    let externalTechnician: any = provisionamentoState.externalTechnician.trim();
+    let internalTechnician: any = provisionamentoState.internalTechnician.trim();
     let saveSheetDB: any = await saveDbModel(clientName, externalTechnician, serialNumber, positioning, equipmentAssets, servicesType, internalTechnician)
+    // let saveSupaDB: any = await SaveServiceInDB(token, clientName, clientAddress, equipmentAssets, serialNumber, servicesType, positioning, externalTechnician, internalTechnician);
+    // setSaveSupaDB(saveSupaDB);
     setSaveSheetsDB(saveSheetDB);
   };
 
@@ -107,7 +112,7 @@ export default function FormProvisionamento() {
 
     let data: any = await provisioningModel(clientName, clientAddress, serialNumber, positioning);
     setResProvisioning(data)
-    // console.log("DATA", data)
+    copy(data);
   };
 
   const handleOnRemovingOnu = async (event: any) => {
@@ -116,6 +121,7 @@ export default function FormProvisionamento() {
 
     let data: any = RemoveOnuModel(positioning);
     setResProvisioning(data)
+    copy(data);
   }
 
   const handleOnSearchByPositioning = async (event: any) => {
@@ -124,6 +130,7 @@ export default function FormProvisionamento() {
 
     let data: any = SearchByPositioning(positioning);
     setResProvisioning(data)
+    copy(data);
   }
 
   const handleOnSearchByMac = async (event: any) => {
@@ -133,6 +140,7 @@ export default function FormProvisionamento() {
 
     let data: any = SearchByMac(serialNumber)
     setResProvisioning(data)
+    copy(data);
   }
 
   const handleCopyText = () => {
