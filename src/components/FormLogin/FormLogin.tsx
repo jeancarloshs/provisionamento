@@ -42,7 +42,6 @@ export default function FormLogin() {
         // setLoading(false);
       }, 1000);
     } else {
-      // console.log("res false:", data.error);
       alert(data.error);
     }
   };

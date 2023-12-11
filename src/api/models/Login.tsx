@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 
 export default async function modelLogin(email: string, password: string) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
