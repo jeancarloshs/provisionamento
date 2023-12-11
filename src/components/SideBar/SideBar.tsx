@@ -5,8 +5,10 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import styles from "./SideBar.module.css";
 import RootLayout from "@/app/layout";
-// import Provisionamento from "@/pages/provisionamento";
-// import NavBar from "../NavBar/NavBar";
+import Provisionamento from "@/pages/provisionamento";
+import NavBar from "../NavBar/NavBar";
+import jwt_decode from "jwt-decode";
+import UserLoged from "@/api/controller/UserLogedController";
 
 let pages = [
   { name: "/", rota: "/" },
@@ -50,17 +52,41 @@ const links = [
 export default function SideBar() {
   const [token, getToken] = useState<String | null>("");
   // const token = sessionStorage.removeItem("Token");
+  const [userData, setUserData] = useState({});
+  const [userInternal, setUserName] = useState<any[] | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>();
   const router = useRouter();
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("Token");
+    const storedToken = sessionStorage.getItem("Token") as string;
     getToken(storedToken);
+
+    const fetchUserLoged = async () => {
+      try {
+        interface DecodedToken {
+          id: number;
+          storedToken: string;
+          userName: string;
+        }
+
+        // Decodifica o token e obtém os dados do usuário
+        const decodedToken: DecodedToken = jwt_decode(storedToken);
+        setUserData(decodedToken);
+        const id = decodedToken.id;
+        let userName = await UserLoged(storedToken, id);
+        setIsAdmin(userName.data[0].admin);
+        // console.log('admin', userName.data[0].admin);
+      } catch (e) {
+        console.error("ERRO:", e);
+      }
+    };
+    fetchUserLoged();
   }, []);
 
-  const exit = (() => {
+  const exit = () => {
     sessionStorage.removeItem("Token");
-    pages[0].name
-  })
+    pages[0].name;
+  };
 
   const RenderLi = (props: any) => {
     if (props.link.name.includes('Ativação')) {
@@ -81,7 +107,7 @@ export default function SideBar() {
           </>
         </details>
       );
-    } else if (props.link.name.includes('Opções')) {
+    } else if (props.link.name.includes('Opções') && isAdmin) {
       return (
         <details className={styles.details}>
           <summary className={styles.summary}>{props.link.name}</summary>
@@ -99,7 +125,10 @@ export default function SideBar() {
           </>
         </details>
       );
-    } else {
+    } else if (props.link.name.includes('Opções') && !isAdmin) {
+      return null; // Não renderiza o link "Opções" quando isAdmin for falso
+    } 
+    else {
       return (
         <li className={styles.li}>
           <a key={props.link.name} href={props.link.href}>
@@ -108,9 +137,9 @@ export default function SideBar() {
         </li>
       );
     }
-  }
+  };
 
-  RootLayout
+  RootLayout;
 
   return (
     <>
@@ -125,10 +154,15 @@ export default function SideBar() {
             <RenderLi key={link.name} link={link} />
           ))}
           <li className={styles.exit}>
-            <a href={pages[0].name} onClick={exit}>Sair</a>
+            <a href={pages[0].name} onClick={exit}>
+              Sair
+            </a>
           </li>
         </ul>
       </div>
     </>
   );
+}
+function async(arg0: () => void) {
+  throw new Error("Function not implemented.");
 }
