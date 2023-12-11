@@ -189,7 +189,7 @@ export default function FormProvisionamento() {
           let userName = await UserLoged(storedToken, id);
           setUserName(userName.data);
           let external = await externalTechnician(storedToken);
-          setUserExternal(external.data[0]);
+          setUserExternal(external.data);
           let ServicesTypes = await servicesTypes(storedToken);
           setServicesTypes(ServicesTypes.data);
         } catch (e) {
