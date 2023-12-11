@@ -5,16 +5,15 @@ export default async function externalTechnician(storedToken: string) {
   let headersList = {
     "Accept": "*/*",
     "Authorization": `Bearer ${storedToken}`,
-   }
-   
-   let response = await fetch(`${urlApi}/listaUsuarios`, { 
-     method: "GET",
-     headers: headersList
-   });
-   
-   let data = await response.json();
-//    console.log("DATA", data);
-   return data;
-}
+    "Content-Type": "application/json"
+  }
 
-// externalTechnician();
+  let response = await fetch(`${urlApi}/listaUsuarios`, {
+    method: "GET",
+    headers: headersList
+  });
+
+  let data = await response.json();
+  // console.log("DATA", data);
+  return data;
+}
