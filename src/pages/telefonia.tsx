@@ -7,7 +7,7 @@ import FormTelefonia from "@/components/FormTelefonia/FormTelefonia";
 const Telefonia = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Telefonia"
-  })
+  }, [])
   tokenVerify()
   return (
     <>

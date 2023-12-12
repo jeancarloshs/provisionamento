@@ -7,7 +7,7 @@ import tokenVerify from "@/api/middleware/tokenVerify";
 const Opcoes = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Opções"
-  })
+  }, [])
   tokenVerify()
   return (
     <>

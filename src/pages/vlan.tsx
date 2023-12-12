@@ -7,7 +7,7 @@ import FormVlan from "@/components/FormVlan/FormVlan";
 const Vlan = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Vlan"
-  })
+  }, [])
   tokenVerify()
   return (
     <>

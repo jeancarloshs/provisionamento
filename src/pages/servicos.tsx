@@ -6,7 +6,7 @@ import tokenVerify from "@/api/middleware/tokenVerify";
 const Servicos = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Serviços"
-  })
+  }, [])
   tokenVerify()
   return (
     <>

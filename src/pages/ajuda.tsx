@@ -7,7 +7,7 @@ import Helpe from "@/components/Helpe/Helpe";
 const Ajuda = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Ajuda"
-  })
+  }, [])
   tokenVerify()
   return (
     <>

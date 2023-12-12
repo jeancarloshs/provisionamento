@@ -7,7 +7,7 @@ import FormBridge from "@/components/FormBridge/FormBridge";
 const Bridge = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Bridge"
-  })
+  }, [])
   tokenVerify()
   return (
     <>

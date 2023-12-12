@@ -6,7 +6,7 @@ import FormProvisionamento from "@/components/FormProvisionamento/FormProvisiona
 const Provisionamento = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Provisionamento"
-  })
+  }, [])
   return (
     <>
       <SideBar></SideBar>
