@@ -76,6 +76,21 @@ export default function FormVlan() {
     })
   }
 
+  const removeAccentuation = (text: string) => {
+    const mapaAcentos: any = {
+      'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+      'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
+      'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
+      'ã': 'a', 'õ': 'o', 'ç': 'c',
+      'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 'ü': 'u',
+      'ñ': 'n'
+    };
+  
+    const regexAcentos = /[áéíóúâêîôûàèìòùãõçäëïöüñ]/g;
+  
+    return text.replace(regexAcentos, (match: string | number) => mapaAcentos[match] || match);
+  }
+
   const handleChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
     setResProvisioning(event.target.value);
@@ -100,6 +115,7 @@ export default function FormVlan() {
     let vlan = provisionamentoState.vlan.trim();
     let vlanName = provisionamentoState.vlanName.trim();
 
+    vlanName = removeAccentuation(vlanName);
     // serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(4, serialNumber.length)}`;
 
     let data: any = await CreateVlanModel(vlan, vlanName);
