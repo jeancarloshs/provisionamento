@@ -100,6 +100,7 @@
 .inputProvisionamento, .formSelect {
   color: white;
   outline: 2px solid transparent;
+  transition: all ease-in-out 0.2s;
   background-color: #1D2432;
   border-radius: 5px !important;
 }
