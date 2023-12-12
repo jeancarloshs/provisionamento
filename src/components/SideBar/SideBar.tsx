@@ -24,21 +24,21 @@ let listPages = [
   { name: "/telefonia", rota: "Telefonia" },
   { name: "/vlan", rota: "Vlan" },
   { name: "/usuarios", rota: "Usuarios" },
-  { name: "/serviços", rota: "Serviços" },
+  { name: "/servicos", rota: "Servicos" },
   { name: "/arquivos", rota: "Arquivos" },
 ];
 
 const listLinksActivation = [
-  { id: 1, name: "Comum", href: listPages[0].name, icon: "", typeMenu: "Ativação" },
-  { id: 2, name: "Bridge", href: listPages[1].name, icon: "", typeMenu: "Ativação" },
-  { id: 3, name: "Telefonia", href: listPages[2].name, icon: "", typeMenu: "Ativação" },
-  { id: 4, name: "Vlan", href: listPages[3].name, icon: "", typeMenu: "Ativação" },
+  { name: "Comum", href: listPages[0].name, icon: "", typeMenu: "Ativação" },
+  { name: "Bridge", href: listPages[1].name, icon: "", typeMenu: "Ativação" },
+  { name: "Telefonia", href: listPages[2].name, icon: "", typeMenu: "Ativação" },
+  { name: "Vlan", href: listPages[3].name, icon: "", typeMenu: "Ativação" },
 ];
 
 const listLinksOptions = [
-  { id: 5, name: "Usuarios", href: listPages[4].name, icon: "", typeMenu: "Opções" },
-  { id: 6, name: "Serviços", href: listPages[5].name, icon: "", typeMenu: "Opções" },
-  { id: 7, name: "Arquivos", href: listPages[6].name, icon: "", typeMenu: "Opções" },
+  { name: "Usuarios", href: listPages[4].name, icon: "", typeMenu: "Opções" },
+  { name: "Serviços", href: listPages[5].name, icon: "", typeMenu: "Opções" },
+  { name: "Arquivos", href: listPages[6].name, icon: "", typeMenu: "Opções" },
 ]
 
 const links = [
