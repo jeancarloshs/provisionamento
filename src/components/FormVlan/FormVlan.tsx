@@ -171,7 +171,7 @@ export default function FormVlan() {
     setResProvisioning("");
   };
 
-  tokenVerify();
+  // tokenVerify();
 
   useEffect(() => {
     // Verifica se está no ambiente do navegador antes de acessar o sessionStorage
