@@ -137,6 +137,39 @@
   color: rgb(255, 200, 200);
 }
 
+/* ################################################################################################ */
+
+@media only screen and (max-device-width: 1200px) {
+  .sidenav {
+    height: 100%;
+    width: 175px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /* background-color: #111; */
+    background-color: #202123;
+    /* background-color: #172138; */
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  .imgSideNav {
+    width: 75px;
+    height: 33px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+
+  .sidenav {
+    padding-top: 15px;
+  }
+  
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
