@@ -1,0 +1,16 @@
+.containerTable {
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.table {
+    max-width: 1200px;
+    width: 1000px;
+}
+
+.tableTr {
+    
+}

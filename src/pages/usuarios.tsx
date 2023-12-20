@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import SideBar from "@/components/SideBar/SideBar";
 import tokenVerify from "@/api/middleware/tokenVerify";
+import OpcoesComponent from "@/components/Opcoes/OpcoesComponent";
 
 const Usuarios = () => {
   useEffect(() => {
@@ -11,6 +12,7 @@ const Usuarios = () => {
   return (
     <>
       <SideBar></SideBar>
+      <OpcoesComponent></OpcoesComponent>
     </>
   );
 };
