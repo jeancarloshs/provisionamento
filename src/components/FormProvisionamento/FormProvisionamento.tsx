@@ -445,7 +445,12 @@ export default function FormProvisionamento() {
           </ButtonComponent>
         </div>
         <div className={styles.codigoGerado}>
-          <ScriptTextArea valueResProvisioning={resProvisioning} />
+          <ScriptTextArea
+            textAreaName="scriptOLT"
+            valueResProvisioning={resProvisioning}
+            textAreaOnChange={handleChangeTextarea}
+            textAreaId="scriptOLT"
+          />
           <ButtonComponent
             btnId="btnLimpaInputs"
             btnName="btnLimpaInputs"

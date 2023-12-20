@@ -1,26 +1,23 @@
-import { useState } from 'react';
-import styles from './ScriptTextArea.module.css';
+import { useState } from "react";
+import styles from "./ScriptTextArea.module.css";
 
 type TextAreaProps = {
+  textAreaName: string;
+  textAreaClassName?: string;
   valueResProvisioning: string;
-}
+  textAreaOnChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  textAreaId: string;
+};
 
 export default function ScriptTextArea(props: TextAreaProps) {
-  const [resProvisioning, setResProvisioning] = useState("");
-
-  const handleChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    event.preventDefault();
-    setResProvisioning(event.target.value);
-  };
-
   return (
     <>
       <textarea
-        name="scriptOLT"
+        name={props.textAreaName}
         className={styles.scriptOLT}
         value={props.valueResProvisioning}
-        onChange={handleChangeTextarea}
-        id="scriptOLT"
+        onChange={props.textAreaOnChange}
+        id={props.textAreaId}
         readOnly
       ></textarea>
     </>
