@@ -50,4 +50,4 @@ Esse projeto é usado pelas seguintes empresas:
 - [@jeancarloshs](https://www.github.com/jeancarloshs)
 
 ## 🔗 Links
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jean-carlos-nunes-de-almeida-81a68b139/?target=_blank)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jean-carlos-nunes-de-almeida-81a68b139/)
