@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import styles from './ScriptTextArea.module.css';
 
-export default async function ScriptTextArea(props: string) {
-  
+type TextAreaProps = {
+  valueResProvisioning: string;
+}
+
+export default function ScriptTextArea(props: TextAreaProps) {
   const [resProvisioning, setResProvisioning] = useState("");
+
   const handleChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
     setResProvisioning(event.target.value);
@@ -14,7 +18,7 @@ export default async function ScriptTextArea(props: string) {
       <textarea
         name="scriptOLT"
         className={styles.scriptOLT}
-        value={props.resProvisioning}
+        value={props.valueResProvisioning}
         onChange={handleChangeTextarea}
         id="scriptOLT"
         readOnly
