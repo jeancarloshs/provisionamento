@@ -6,8 +6,36 @@ import styles from "./Opcoes.module.css";
 import RootLayout from "@/app/layout";
 import Provisionamento from "@/pages/provisionamento";
 import NavBar from "../NavBar/NavBar";
+import externalTechnician from "@/api/controller/ExternalTechnicianController";
+
+interface UserList {
+  id: string;
+  nomeFuncionario: string;
+  cargoFuncionario: string;
+  emailFuncionario: string;
+  admin: boolean;
+  permissaoDoColaborador: string;
+  createdAt: string;
+  updateAt: string;
+}
+
 
 export default function OpcoesComponent() {
+
+  const [userList, setUserList] = useState<UserList[]>();
+
+  const usersFetch = async () => {
+    const token = sessionStorage.getItem("Token") as string;
+    var resUsersList = await externalTechnician(token)
+    setUserList(resUsersList.data)
+    // return resUsersList
+  }
+
+
+  useEffect(() => {
+    usersFetch()
+  }, []);
+
   return (
     <>
       <div className={styles.containerTable}>
@@ -18,24 +46,25 @@ export default function OpcoesComponent() {
               <th>Nome Funcionario</th>
               <th>Cargo Funcionario</th>
               <th>Permissão do Colaborador</th>
-              <th>Status</th>
               <th>Editar</th>
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-            <tr>
-              <td>linha 1</td>
-              <td>linha 2</td>
-              <td>linha 3</td>
-              <td>linha 4</td>
-              <td>linha 5</td>
-            </tr>
+            {
+              userList && userList.map((user: UserList, index) => (
+                <tr key={index}>
+                  <td>{user.nomeFuncionario}</td>
+                  <td>{user.cargoFuncionario}</td>
+                  <td>{user.permissaoDoColaborador}</td>
+                  <td>{user.id}</td>
+                </tr>
+              ))
+            }
           </tbody>
           <tfoot>
             <tr>
               <td></td>
               <td></td>
-              <td>Rodapé</td>
               <td></td>
               <td></td>
             </tr>
