@@ -1,17 +1,5 @@
-import { ReactNode } from 'react';
+import { SelectProps } from '@/api/types/types';
 import styles from './Select.module.css'
-
-type SelectProps = {
-    selectLabelHtmlFor: string
-    selectLabelClassName?: string
-    selectName: string;
-    selectId: string;
-    selectValue: string;
-    selectOnChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-    selectClassName?: string;
-    optionValue: string
-    optionTypes: ReactNode;
-}
 
 export default function Select(props: SelectProps) {
   return (

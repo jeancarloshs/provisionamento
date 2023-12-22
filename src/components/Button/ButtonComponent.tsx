@@ -1,14 +1,6 @@
 import { useState } from "react";
 import styles from "./ButtonComponent.module.css";
-
-type ButtonProps = {
-  btnId: string;
-  btnName: string;
-  btnText?: string;
-  btnOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  btnClassName?: string;
-  children: string;
-};
+import { ButtonProps } from "@/api/types/types";
 
 export default function ButtonComponent(props: ButtonProps) {
   return (

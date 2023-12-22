@@ -10,6 +10,7 @@ import externalTechnician from "@/api/controller/ExternalTechnicianController";
 import deleteUser from "@/api/controller/DeleteUser";
 import userConnected from "@/api/middleware/userConnected";
 import { UserList } from "@/api/types/types";
+import ButtonComponent from "../Button/ButtonComponent";
 
 
 export default function OpcoesComponent() {
@@ -44,12 +45,19 @@ export default function OpcoesComponent() {
     }
   }
 
+  const handleAddButton = () => {
+    console.log('clicou')
+  }
+
   useEffect(() => {
     usersFetch()
   }, []);
 
   return (
     <>
+      <div className={styles.btnAdd}>
+        <ButtonComponent btnId="adduser" btnName="Adicionar Usuário" btnOnClick={handleAddButton}>Adicionar</ButtonComponent>
+      </div>
       {/* {loading && (
         <img
           src='/assets/image/dot-revolve.svg'

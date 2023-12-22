@@ -1,13 +1,6 @@
 import { useState } from "react";
 import styles from "./ScriptTextArea.module.css";
-
-type TextAreaProps = {
-  textAreaName: string;
-  textAreaClassName?: string;
-  valueResProvisioning: string;
-  textAreaOnChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  textAreaId: string;
-};
+import { TextAreaProps } from "@/api/types/types";
 
 export default function ScriptTextArea(props: TextAreaProps) {
   return (
