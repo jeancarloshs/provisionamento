@@ -1,4 +1,4 @@
-export default async function deleteUser(storedToken: string, userId: number) {
+export default async function deleteUser(storedToken: string, userId: string) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
   let headersList = {
     "Accept": "*/*",

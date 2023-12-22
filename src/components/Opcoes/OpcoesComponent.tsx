@@ -7,6 +7,7 @@ import RootLayout from "@/app/layout";
 import Provisionamento from "@/pages/provisionamento";
 import NavBar from "../NavBar/NavBar";
 import externalTechnician from "@/api/controller/ExternalTechnicianController";
+import deleteUser from "@/api/controller/DeleteUser";
 
 interface UserList {
   id: string;
@@ -26,14 +27,30 @@ export default function OpcoesComponent() {
   const [userList, setUserList] = useState<UserList[]>();
   const [loading, setLoading] = useState(false);
   const imageEdite = '/assets/image/icons8-maintenance-64.png';
+  const imageDelete = '/assets/image/icons8-excluir-16.png';
+  const [token, setToken] = useState<string>('');
+  const [refreshPage, setRefreshPage] = useState<string>();
 
   const usersFetch = async () => {
-    const token = sessionStorage.getItem("Token") as string;
-    var resUsersList = await externalTechnician(token)
+    const storageToken = sessionStorage.getItem("Token") as string;
+    setToken(storageToken);
+    var resUsersList = await externalTechnician(storageToken)
     setUserList(resUsersList.data)
     // return resUsersList
   }
 
+  const handleUserDelete = async (userId: string) => {
+    if(confirm("Tem certeza ?") == true) {
+      const userDeleted = await deleteUser(token, userId)
+      if(userDeleted.success) {
+        alert(userDeleted.data)
+        usersFetch()
+      } else {
+        alert(userDeleted.error)
+        usersFetch()
+      }
+    }
+  }
 
   useEffect(() => {
     usersFetch()
@@ -71,12 +88,11 @@ export default function OpcoesComponent() {
                     <td className={styles.td}>{user.permissaoDoColaborador}</td>
                     <td className={styles.td}>{user.status != 0 ? "Ativo" : "Inativo"}</td>
                     <td className={`${styles.td} ${styles.tdEdite}`}>
-                      <a href={user.id} key={user.id}>
+                      <a href={user.id}>
                         <img src={imageEdite} alt="Editar" className={styles.imageEdite} />
                       </a>
-                      {/* <span>-</span> */}
-                      <a href="#" key={user.id}>
-                        <img src={imageEdite} alt="Excluir" className={styles.imageEdite} />
+                      <a href="#" data-confirm="Tem certeza ?" onClick={() => handleUserDelete(user.id)} >
+                        <img src={imageDelete} alt="Excluir" className={styles.imageEdite} />
                       </a>
                     </td>
                   </tr>
