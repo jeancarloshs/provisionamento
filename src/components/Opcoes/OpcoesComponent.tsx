@@ -9,18 +9,7 @@ import NavBar from "../NavBar/NavBar";
 import externalTechnician from "@/api/controller/ExternalTechnicianController";
 import deleteUser from "@/api/controller/DeleteUser";
 import userConnected from "@/api/middleware/userConnected";
-
-interface UserList {
-  id: string;
-  nomeFuncionario: string;
-  cargoFuncionario: string;
-  emailFuncionario: string;
-  admin: boolean;
-  status: number;
-  permissaoDoColaborador: string;
-  createdAt: string;
-  updateAt: string;
-}
+import { UserList } from "@/api/types/types";
 
 
 export default function OpcoesComponent() {

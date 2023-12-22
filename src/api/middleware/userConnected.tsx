@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import UserLoged from "../controller/UserLogedController";
 import jwt_decode from "jwt-decode";
-
-interface DecodedToken {
-  id: number;
-  storedToken: string;
-  userName: string;
-}
+import { DecodedToken } from "../types/types";
 
 export default async function userConnected() {
 
