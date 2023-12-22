@@ -8,6 +8,7 @@ import Provisionamento from "@/pages/provisionamento";
 import NavBar from "../NavBar/NavBar";
 import externalTechnician from "@/api/controller/ExternalTechnicianController";
 import deleteUser from "@/api/controller/DeleteUser";
+import userConnected from "@/api/middleware/userConnected";
 
 interface UserList {
   id: string;
@@ -29,20 +30,22 @@ export default function OpcoesComponent() {
   const imageEdite = '/assets/image/icons8-maintenance-64.png';
   const imageDelete = '/assets/image/icons8-excluir-16.png';
   const [token, setToken] = useState<string>('');
-  const [refreshPage, setRefreshPage] = useState<string>();
+  const [userId, setUserId] = useState<string>();
 
   const usersFetch = async () => {
+    const userIdFunction = await userConnected();
+    const userArrayId = userIdFunction.data[0]['id'];
+    setUserId(userArrayId);
     const storageToken = sessionStorage.getItem("Token") as string;
     setToken(storageToken);
     var resUsersList = await externalTechnician(storageToken)
     setUserList(resUsersList.data)
-    // return resUsersList
   }
 
   const handleUserDelete = async (userId: string) => {
-    if(confirm("Tem certeza ?") == true) {
+    if (confirm("Tem certeza ?") == true) {
       const userDeleted = await deleteUser(token, userId)
-      if(userDeleted.success) {
+      if (userDeleted.success) {
         alert(userDeleted.data)
         usersFetch()
       } else {
@@ -91,9 +94,11 @@ export default function OpcoesComponent() {
                       <a href={user.id}>
                         <img src={imageEdite} alt="Editar" className={styles.imageEdite} />
                       </a>
-                      <a href="#" data-confirm="Tem certeza ?" onClick={() => handleUserDelete(user.id)} >
-                        <img src={imageDelete} alt="Excluir" className={styles.imageEdite} />
-                      </a>
+                      {userId == '1' ?
+                        <a href="#" data-confirm="Tem certeza ?" onClick={() => handleUserDelete(user.id)} >
+                          <img src={imageDelete} alt="Excluir" className={styles.imageEdite} />
+                        </a>
+                        : ''}
                     </td>
                   </tr>
                 ))
