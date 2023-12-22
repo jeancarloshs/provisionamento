@@ -16,7 +16,7 @@ import RemoveOnuModel from "@/api/models/Remove";
 import SearchByMac from "@/api/models/SearchByMac";
 import SearchByPositioning from "@/api/models/SearchByPositioning";
 import CreateVlanModel from "@/api/models/CreateVlan";
-import Select from "../Select/Select";
+import Select from '../Select/Select.1';
 import Input from "../Input/Input";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import ButtonComponent from "../Button/ButtonComponent";

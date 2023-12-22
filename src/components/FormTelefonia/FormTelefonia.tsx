@@ -17,7 +17,7 @@ import SearchByMac from "@/api/models/SearchByMac";
 import SearchByPositioning from "@/api/models/SearchByPositioning";
 import TellProvisioningModel from "@/api/models/TelProvisioning";
 import Input from "../Input/Input";
-import Select from "../Select/Select";
+import Select from '../Select/Select.1';
 import ButtonComponent from "../Button/ButtonComponent";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 

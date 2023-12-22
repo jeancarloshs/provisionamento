@@ -10,13 +10,13 @@ export interface UserList {
   permissaoDoColaborador: string;
   createdAt: string;
   updateAt: string;
-}
+};
 
 export interface DecodedToken {
   id: number;
   storedToken: string;
   userName: string;
-}
+};
 
 export type ButtonProps = {
   btnId: string;
@@ -37,7 +37,7 @@ export type SelectProps = {
   selectClassName?: string;
   optionValue: string
   optionTypes: ReactNode;
-}
+};
 
 export type TextAreaProps = {
   textAreaName: string;
@@ -56,4 +56,31 @@ export type InputProps = {
   inputValue: string;
   inputOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputPlaceHolder: string;
+};
+
+export interface UserList {
+  id:             string;
+  clientes:       string;
+  tecnicoRua:     string;
+  numberSerial:   string;
+  tipoDeAtivacao: string;
+  posicionamento: string;
+  patrimonioNX:   string;
+  tecnicoSup:     string;
+  data:           string;
+};
+
+export interface ServiceList {
+  id:            string;
+  tipoDeServico: string;
+  createdAt:     Date;
+  updateAt:      Date;
+};
+
+export interface ArchivList {
+  id:        string;
+  nome:      string;
+  url:       string;
+  createdAt: string;
+  updateAt:  string;
 };

@@ -8,7 +8,7 @@ export default function Select(props: SelectProps) {
       <select
         name={props.selectName}
         id={props.selectId}
-        value={props.optionValue}
+        value={props.selectValue}
         onChange={props.selectOnChange}
         className={styles.formSelect}
         required
