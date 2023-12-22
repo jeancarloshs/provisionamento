@@ -18,7 +18,7 @@ import SearchByPositioning from "@/api/models/SearchByPositioning";
 import BridgeProvisioningWithWifiModel from "@/api/models/BridgeProvisioningWithWifi";
 import BridgeProvisioningWithoutWifiModel from "@/api/models/BridgeProvisioningWithoutWifi";
 import Input from "../Input/Input";
-import Select from '../Select/Select.1';
+import Select from '../Select/Select';
 import ButtonComponent from "../Button/ButtonComponent";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 
