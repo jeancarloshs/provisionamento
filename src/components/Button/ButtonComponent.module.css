@@ -1,0 +1,14 @@
+.btnProvisionamento {
+    width: 145px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #fba828;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: all 0.5s ease;
+    margin-right: 10px;
+  }
+  
+  .btnProvisionamento:hover {
+    background-color: #BC4920;
+  }

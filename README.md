@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# provisionamento
 
-First, run the development server:
+Sistema para gerar script para ativar clientes na OLT Nokia, também possui integração com o SheetsDb para controle do Comercial de quais instalações foram feitas no dia. Painel para gerenciamento de usuarios internos, externos, documentações, etc... Banco de dados Utilizado para salvar as informações foi o Supabase e o back-end feito em NodeJS
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Aprendizados
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O que você aprendeu construindo esse projeto? Quais desafios você enfrentou e como você superou-os?
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Aprendi sobre React.JS, TypeScript, PostgreSQL, NodeJS. O Front-end em si foi um desafio, pois tenho um pouco de dificuldade na parte de front-end, já a parte do back-end é mais facil para eu desenvolver
+## Funcionalidades
 
-## Learn More
+- Gerar Script de Ativação, Remoção, Bridge, Vlan, Telefonia
+- Gerenciamento dos tipos de serviços realizados
+- Gerenciamento dos técnicos internos e externos
+- Página com documentações em geral para auxiliar ao time
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stack utilizada
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Front-end:** React, TypeScript, TailwindCSS
 
-## Deploy on Vercel
+**Back-end:** Node, Express, Sequelize, PostgreSQL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Variáveis de Ambiente
+
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
+
+`NEXT_PUBLIC_URL_API` = API do back-end
+
+`NEXT_PUBLIC_URL_API_SHEETS_DB` = API do SheetsDB utilizado
+## Relacionados
+
+Segue alguns projetos relacionados
+
+[apiProvisionamento](https://github.com/jeancarloshs/apiProvisionamento/blob/main/README.md)
+
+
+## Usado por
+
+Esse projeto é usado pelas seguintes empresas:
+
+- Naxos Telecom Comercio E Servicos Eireli
+
+
+## Autores
+
+- [@jeancarloshs](https://www.github.com/jeancarloshs)
+
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jean-carlos-nunes-de-almeida-81a68b139/)

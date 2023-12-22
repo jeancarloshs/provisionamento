@@ -16,6 +16,10 @@ import RemoveOnuModel from "@/api/models/Remove";
 import SearchByMac from "@/api/models/SearchByMac";
 import SearchByPositioning from "@/api/models/SearchByPositioning";
 import CreateVlanModel from "@/api/models/CreateVlan";
+import Select from "../Select/Select";
+import Input from "../Input/Input";
+import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
+import ButtonComponent from "../Button/ButtonComponent";
 
 export default function FormVlan() {
   const [token, setToken] = useState<String | null>("");
@@ -40,13 +44,13 @@ export default function FormVlan() {
   });
   const [searchByPositioningState, setSearchByPositioningState] = useState({
     positioning: "",
-  })
+  });
   const [searchByMacState, setSearchByMacState] = useState({
     serialNumber: "",
   });
   const [resProvisioning, setResProvisioning] = useState("");
   const [saveSheetDB, setSaveSheetsDB] = useState("");
-  const [copyText, setCopyText] = useState('');
+  const [copyText, setCopyText] = useState("");
 
   const handleOnChangeProvisioning = (event: any, key: any) => {
     setProvisionamentoState({
@@ -58,40 +62,63 @@ export default function FormVlan() {
   const handleOnChangeRemovingOnu = (event: any, key: any) => {
     setRemovingOnuState({
       ...removingOnuState,
-      [key]: event.target.value
-    })
-  }
+      [key]: event.target.value,
+    });
+  };
 
   const handlaOnChangeSearchByPositioning = (event: any, key: any) => {
     setSearchByPositioningState({
       ...searchByPositioningState,
-      [key]: event?.target.value
-    })
-  }
+      [key]: event?.target.value,
+    });
+  };
 
   const handleOnChangeSearchByMac = (event: any, key: any) => {
     setSearchByMacState({
       ...searchByMacState,
-      [key]: event.target.value
-    })
-  }
+      [key]: event.target.value,
+    });
+  };
 
   const removeAccentuation = (text: string) => {
     const mapaAcentos: any = {
-      'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
-      'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
-      'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
-      'ã': 'a', 'õ': 'o', 'ç': 'c',
-      'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 'ü': 'u',
-      'ñ': 'n'
+      á: "a",
+      é: "e",
+      í: "i",
+      ó: "o",
+      ú: "u",
+      â: "a",
+      ê: "e",
+      î: "i",
+      ô: "o",
+      û: "u",
+      à: "a",
+      è: "e",
+      ì: "i",
+      ò: "o",
+      ù: "u",
+      ã: "a",
+      õ: "o",
+      ç: "c",
+      ä: "a",
+      ë: "e",
+      ï: "i",
+      ö: "o",
+      ü: "u",
+      ñ: "n",
     };
-  
-    const regexAcentos = /[áéíóúâêîôûàèìòùãõçäëïöüñ]/g;
-  
-    return text.replace(regexAcentos, (match: string | number) => mapaAcentos[match] || match);
-  }
 
-  const handleChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const regexAcentos = /[áéíóúâêîôûàèìòùãõçäëïöüñ]/g;
+
+    return text.replace(
+      regexAcentos,
+      (match: string | number) => mapaAcentos[match] || match
+    );
+  };
+
+  const handleChangeTextarea = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     event.preventDefault();
     setResProvisioning(event.target.value);
   };
@@ -106,7 +133,15 @@ export default function FormVlan() {
     let servicesType = provisionamentoState.serviceType.trim();
     let externalTechnician = provisionamentoState.externalTechnician.trim();
     let internalTechnician = provisionamentoState.internalTechnician.trim();
-    let saveSheetDB: any = await saveDbModel(clientName, externalTechnician, serialNumber, positioning, equipmentAssets, servicesType, internalTechnician)
+    let saveSheetDB: any = await saveDbModel(
+      clientName,
+      externalTechnician,
+      serialNumber,
+      positioning,
+      equipmentAssets,
+      servicesType,
+      internalTechnician
+    );
     setSaveSheetsDB(saveSheetDB);
   };
 
@@ -119,7 +154,7 @@ export default function FormVlan() {
     // serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(4, serialNumber.length)}`;
 
     let data: any = await CreateVlanModel(vlan, vlanName);
-    setResProvisioning(data)
+    setResProvisioning(data);
     // console.log("DATA", data)
   };
 
@@ -128,45 +163,47 @@ export default function FormVlan() {
     let positioning = provisionamentoState.positioning.trim();
 
     let data: any = RemoveOnuModel(positioning);
-    setResProvisioning(data)
-  }
+    setResProvisioning(data);
+  };
 
   const handleOnSearchByPositioning = async (event: any) => {
     event.preventDefault();
     let positioning = provisionamentoState.positioning.trim();
 
     let data: any = SearchByPositioning(positioning);
-    setResProvisioning(data)
-  }
+    setResProvisioning(data);
+  };
 
   const handleOnSearchByMac = async (event: any) => {
     event.preventDefault();
     let serialNumber = provisionamentoState.serialNumber.trim();
-    serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(4, serialNumber.length)}`;
+    serialNumber = `${serialNumber.slice(0, 4)}:${serialNumber.slice(
+      4,
+      serialNumber.length
+    )}`;
 
-    let data: any = SearchByMac(serialNumber)
-    setResProvisioning(data)
-  }
+    let data: any = SearchByMac(serialNumber);
+    setResProvisioning(data);
+  };
 
   const handleCopyText = () => {
     // event.preventDefault()
-    alert("Copiado para area de transferencia!!")
+    alert("Copiado para area de transferencia!!");
     copy(resProvisioning);
- } 
-  
+  };
+
   const handleLimparDados = () => {
-    setProvisionamentoState(
-    {
-    clientName: "",
-    clientAddress: "",
-    equipmentAssets: "",
-    serialNumber: "",
-    positioning: "",
-    serviceType: "",
-    externalTechnician: "",
-    internalTechnician: "",
-    vlan: "",
-    vlanName: "",
+    setProvisionamentoState({
+      clientName: "",
+      clientAddress: "",
+      equipmentAssets: "",
+      serialNumber: "",
+      positioning: "",
+      serviceType: "",
+      externalTechnician: "",
+      internalTechnician: "",
+      vlan: "",
+      vlanName: "",
     });
     setResProvisioning("");
   };
@@ -252,155 +289,132 @@ export default function FormVlan() {
     <>
       <div className={styles.main}>
         <div className={styles.containerForm}>
-          <form method="POST" onSubmit={handleOnProvisioning} className={styles.formProvisionamento}>
-            <label htmlFor="nome"></label>
-            <input
-              className={styles.inputProvisionamento}
-              type="text"
-              id="nome"
-              name="nome"
-              value={provisionamentoState.vlanName}
-              onChange={(event) =>
+          <form
+            method="POST"
+            onSubmit={handleOnProvisioning}
+            className={styles.formProvisionamento}
+          >
+            <Input
+              inputHtmlFor="nome"
+              inputType="text"
+              inputId="nome"
+              inputName="nome"
+              inputValue={provisionamentoState.vlanName}
+              inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "vlanName")
               }
-              placeholder="Nome Vlan"
-              required
+              inputPlaceHolder="Nome Vlan"
             />
 
-            <label htmlFor="endereco"></label>
-            <input
-              className={styles.inputProvisionamento}
-              type="text"
-              id="endereco"
-              name="endereco"
-              value={provisionamentoState.vlan}
-              onChange={(event) =>
+            <Input
+              inputHtmlFor="vlan"
+              inputType="text"
+              inputId="vlan"
+              inputName="vlan"
+              inputValue={provisionamentoState.vlan}
+              inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "vlan")
               }
-              placeholder="VLAN"
-              required
+              inputPlaceHolder="VLAN"
             />
 
-            <label htmlFor="tipoDeServico" className="selectLabel"></label>
-            <select
-              name="tipoDeServico"
-              id="tipoDeServico"
-              value={provisionamentoState.serviceType}
-              onChange={(event) =>
+            <Select
+              selectLabelHtmlFor="tipoDeServico"
+              selectName="tipoDeServico"
+              selectId="tipoDeServico"
+              selectValue={provisionamentoState.serviceType}
+              selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "serviceType")
               }
-              className={styles.formSelect}
-              required
-            >
-              <option value="">Tipo</option>
-              {servicesTypesOptions}
-            </select>
+              optionValue="Tipo"
+              optionTypes={servicesTypesOptions}
+            ></Select>
 
-            <label htmlFor="instalador" className="selectLabel"></label>
-            <select
-              name="instalador"
-              id="instalador"
-              value={provisionamentoState.externalTechnician}
-              onChange={(event) =>
+            <Select
+              selectLabelHtmlFor="instalador"
+              selectName="instalador"
+              selectId="instalador"
+              selectValue={provisionamentoState.externalTechnician}
+              selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "externalTechnician")
               }
-              className={styles.formSelect}
-              required
-            >
-              <option value="">Instalador</option>
-              {userExternalOptions}
-            </select>
+              optionValue="Instalador"
+              optionTypes={userExternalOptions}
+            ></Select>
 
-            <label htmlFor="suporte" className="selectLabel"></label>
-            <select
-              name="suporte"
-              id="suporte"
-              className={styles.formSelect}
-              value={provisionamentoState.internalTechnician}
-              required
-              onChange={(event) =>
+            <Select
+              selectLabelHtmlFor="suporte"
+              selectName="suporte"
+              selectId="suporte"
+              selectValue={provisionamentoState.internalTechnician}
+              selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "internalTechnician")
               }
-            >
-              <option value="">Suporte</option>
-              {userInternalOptions}
-            </select>
-            </form>
-            <button
-              type="submit"
-              id="btnProvisionar"
-              name="btnProvisionar"
-              onClick={handleOnProvisioning}
-              className={styles.btn}
-            >
-              Provisionar
-            </button>
-            <button
-              type="submit"
-              id="btnRemover"
-              name="btnProvisionar"
-              onClick={handleOnRemovingOnu}
-              className={styles.btn}
-            >
-              Remover
-            </button>
-            <br />
-            <button
-              type="submit"
-              id="btnMac"
-              name="btnMac"
-              onClick={handleOnSearchByPositioning}
-              className={styles.btn}
-            >
-              Mac
-            </button>
-            <button
-              type="submit"
-              id="btnLocalizar"
-              name="btnProvisionar"
-              onClick={handleOnSearchByMac}
-              className={styles.btn}
-            >
-              Localizar
-            </button>
+              optionValue="Suporte"
+              optionTypes={userInternalOptions}
+            ></Select>
+          </form>
+          <ButtonComponent
+            btnId="btnProvisionar"
+            btnName="btnProvisionar"
+            btnOnClick={handleOnProvisioning}
+            btnClassName={styles.btn}
+          >
+            Provisionar
+          </ButtonComponent>
+          <ButtonComponent
+            btnId="btnRemover"
+            btnName="btnRemover"
+            btnOnClick={handleOnRemovingOnu}
+            btnClassName={styles.btn}
+          >
+            Remover
+          </ButtonComponent>
+          <ButtonComponent
+            btnId="btnMac"
+            btnName="btnMac"
+            btnOnClick={handleOnSearchByPositioning}
+            btnClassName={styles.btn}
+          >
+            Mac
+          </ButtonComponent>
+          <ButtonComponent
+            btnId="btnLocalizar"
+            btnName="btnLocalizar"
+            btnOnClick={handleOnSearchByMac}
+            btnClassName={styles.btn}
+          >
+            Localizar
+          </ButtonComponent>
         </div>
         <div className={styles.codigoGerado}>
-          <textarea
-            name="scriptOLT"
-            className={styles.scriptOLT}
-            value={resProvisioning}
-            onChange={handleChangeTextarea}
-            id="scriptOLT"
-            readOnly
-          ></textarea>
-          <button
-            type="submit"
-            id="btnLimpaInputs"
-            name="btnLimpaInputs"
-            onClick={handleLimparDados}
-            className={styles.btnProvisionamento}
+          <ScriptTextArea
+            textAreaName="scriptOLT"
+            valueResProvisioning={resProvisioning}
+            textAreaOnChange={handleChangeTextarea}
+            textAreaId="scriptOLT"
+          />
+          <ButtonComponent
+            btnId="btnLimpaInputs"
+            btnName="btnLimpaInputs"
+            btnOnClick={handleLimparDados}
           >
             Limpar Dados
-          </button>
-          <button
-            type="submit"
-            id="btnEnviaPlanilha"
-            name="btnEnviaPlanilha"
-            onClick={handleChangeSaveSheetsDb}
-            form="provisionamentoForm"
-            className={styles.btnProvisionamento}
+          </ButtonComponent>
+          <ButtonComponent
+            btnId="btnEnviaPlanilha"
+            btnName="btnEnviaPlanilha"
+            btnOnClick={handleChangeSaveSheetsDb}
           >
             Enviar p/ Planilha
-          </button>
-          <button
-            type="submit"
-            id="btnCopiar"
-            name="btnCopiar"
-            onClick={handleCopyText}
-            className={styles.btnProvisionamento}
+          </ButtonComponent>
+          <ButtonComponent
+            btnId="btnCopiar"
+            btnName="btnCopiar"
+            btnOnClick={handleCopyText}
           >
             Copiar
-          </button>
+          </ButtonComponent>
         </div>
       </div>
     </>
