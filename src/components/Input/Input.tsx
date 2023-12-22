@@ -1,15 +1,5 @@
+import { InputProps } from "@/api/types/types";
 import styles from "./Input.module.css";
-
-type InputProps = {
-  inputHtmlFor: string;
-  inputClassName?: string;
-  inputType: string;
-  inputId: string;
-  inputName: string;
-  inputValue: string;
-  inputOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  inputPlaceHolder: string;
-};
 
 export default function Input(props: InputProps) {
   return (
