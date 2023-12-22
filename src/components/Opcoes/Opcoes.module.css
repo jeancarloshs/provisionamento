@@ -1,5 +1,4 @@
 .containerTable {
-    margin-top: 4%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,4 +96,13 @@
 .imageEdite:hover {
     cursor: pointer;
     filter: drop-shadow(0 0 3px black);
+}
+
+.btnAdd {
+    /* margin-left: 300px; */
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2%;
+    margin-left: 20px;
+    cursor: pointer;
 }
