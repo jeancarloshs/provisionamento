@@ -17,6 +17,7 @@ export default function OpcoesComponent() {
   const imageDelete = '/assets/image/icons8-excluir-16.png';
   const [token, setToken] = useState<string>('');
   const [userId, setUserId] = useState<string>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const usersFetch = async () => {
     const userIdFunction = await userConnected();
@@ -41,9 +42,9 @@ export default function OpcoesComponent() {
     }
   }
 
-  const handleAddButton = () => {
-    console.log('clicou')
-    // return <Modal isOpen={openModal} />
+  const handleAddButton = (userID: string, userEmail: string) => {
+    <Modal userId={userID} userEmail={userEmail} />
+    console.log('CLICOUUUUUUUUU')
   }
 
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function OpcoesComponent() {
         userList &&
         <>
           <div className={styles.btnAdd}>
-            <Modal  />
+            <Modal />
           </div>
           <div className={styles.containerTable}>
             <table className={styles.table}>
@@ -86,8 +87,11 @@ export default function OpcoesComponent() {
                       <td className={styles.td}>{user.permissaoDoColaborador}</td>
                       <td className={styles.td}>{user.status != 0 ? "Ativo" : "Inativo"}</td>
                       <td className={`${styles.td} ${styles.tdEdite}`}>
-                        <a href={user.id}>
+                      <Modal userId={user.id} userName={user.nomeFuncionario} userEmail={user.emailFuncionario} />
+                        <button onClick={() => {handleAddButton(user.id, user.emailFuncionario)}}>
                           <img src={imageEdite} alt="Editar" className={styles.imageEdite} />
+                        </button>
+                        <a href={user.id}>
                         </a>
                         {userId == '1' ?
                           <a href="#" data-confirm="Tem certeza ?" onClick={() => handleUserDelete(user.id)} >

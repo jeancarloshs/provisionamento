@@ -5,16 +5,20 @@ import Input from "../Input/Input";
 import Select from "../Select/Select";
 
 interface ModalProps {
-  isOpen: boolean;
+  userId?: string;
+  userName?: string;
+  userEmail?: string;
+  userPassword?: string;
+  userRole?: string;
+  userPermission?: boolean;
+  userStatus?: number;
+  isOpen?: boolean;
+  btnImage?: string;
 }
 
-export default function Modal() {
+export default function Modal(props: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const userOptions = () => {
-    return <option value={1}>Ativo</option>;
-  };
-  
   return (
     <>
       <ButtonComponent
@@ -57,7 +61,7 @@ export default function Modal() {
                         inputType="text"
                         inputId="nome"
                         inputName="nome"
-                        inputValue="Nome do Colaborador"
+                        inputValue={props.userName ?? "Nome do Colaborador"}
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
                           console.log("nome")
@@ -69,7 +73,7 @@ export default function Modal() {
                         inputType="email"
                         inputId="email"
                         inputName="email"
-                        inputValue="Email do Colaborador"
+                        inputValue={props.userEmail ?? "Email do Colaborador"}
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
                           console.log("Email")
@@ -81,7 +85,7 @@ export default function Modal() {
                         inputType="password"
                         inputId="senha"
                         inputName="senha"
-                        inputValue="Senha do Colaborador"
+                        inputValue={props.userPassword ?? "Senha do Colaborador"}
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
                           console.log("Senha")
@@ -113,18 +117,10 @@ export default function Modal() {
                         selectValue="valor"
                         // selectOnChange='{(event) => handleOnChangeProvisioning( event, "externalTechnician")}'
                         optionValue="Status do Colaborador"
-                        optionTypes='{userOptions}'
+                        optionTypes="{userOptions}"
                       ></Select>
                     </form>
                   </div>
-
-                  {/* <p className="my-4 text-black text-lg leading-relaxed">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They're slowed down by their perception of
-                    themselves. If you're taught you can’t do anything, you
-                    won’t do anything. I was taught I could do everything.
-                  </p> */}
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
