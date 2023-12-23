@@ -267,6 +267,16 @@ export default function FormTelefonia() {
     }
   }, []);
 
+  // Filtra apenas os instaladores
+  const installers = Array.isArray(userExternal)
+    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador")
+    : [];
+
+  // Filtra apenas os funcionários do suporte
+  const supportStaff = Array.isArray(userExternal)
+    ? userExternal.filter((user) => user.cargoFuncionario === "Suporte")
+    : [];
+
   // Verifica se userExternal é um array antes de fazer o mapeamento
   const servicesTypesOptions = Array.isArray(typesServices) ? (
     typesServices.map((type, index) => (
@@ -278,8 +288,8 @@ export default function FormTelefonia() {
     <option value="">Carregando...</option>
   );
 
-  const userExternalOptions = Array.isArray(userExternal) ? (
-    userExternal.map((user, index) => (
+  const userExternalOptions = Array.isArray(installers) ? (
+    installers.map((user, index) => (
       <option key={index} value={user.nomeFuncionario}>
         {user.cargoFuncionario == "Instalador" ? user.nomeFuncionario : ""}
       </option>
