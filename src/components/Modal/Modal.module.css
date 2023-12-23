@@ -1,0 +1,33 @@
+.containerForm {
+  max-width: 450px;
+}
+
+.formProvisionamento {
+  width: 100%;
+  /* margin-bottom: 10px; */
+}
+
+.formProvisionamento > input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  color: black;
+  background-color: rgb(227, 228, 236);
+}
+
+.formProvisionamento > select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  color: black;
+  background-color: rgb(227, 228, 236);
+}
+
+.formProvisionamento > input:focus,
+.formProvisionamento > select:focus {
+  box-shadow: 0 0 0 0;
+  outline: 2px solid #059669;
+  /* border-color: #4F46E5; */
+}

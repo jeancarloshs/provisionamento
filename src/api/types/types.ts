@@ -33,7 +33,7 @@ export type SelectProps = {
   selectName: string;
   selectId: string;
   selectValue: string;
-  selectOnChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectOnChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   selectClassName?: string;
   optionValue: string
   optionTypes: ReactNode;

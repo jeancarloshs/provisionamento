@@ -7,7 +7,7 @@ import deleteUser from "@/api/controller/DeleteUser";
 import userConnected from "@/api/middleware/userConnected";
 import { UserList } from "@/api/types/types";
 import ButtonComponent from "../Button/ButtonComponent";
-
+import Modal from "../Modal/Modal";
 
 export default function OpcoesComponent() {
 
@@ -43,6 +43,7 @@ export default function OpcoesComponent() {
 
   const handleAddButton = () => {
     console.log('clicou')
+    // return <Modal isOpen={openModal} />
   }
 
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function OpcoesComponent() {
         userList &&
         <>
           <div className={styles.btnAdd}>
-            <ButtonComponent btnId="adduser" btnName="Adicionar Usuário" btnOnClick={handleAddButton}>Adicionar</ButtonComponent>
+            <Modal  />
           </div>
           <div className={styles.containerTable}>
             <table className={styles.table}>
