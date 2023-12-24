@@ -42,8 +42,7 @@ export default function OpcoesComponent() {
     }
   }
 
-  const handleAddButton = (userID: string, userEmail: string) => {
-    <Modal userId={userID} userEmail={userEmail} />
+  const handleAddButton = () => {
     console.log('CLICOUUUUUUUUU')
   }
 
@@ -87,12 +86,7 @@ export default function OpcoesComponent() {
                       <td className={styles.td}>{user.permissaoDoColaborador}</td>
                       <td className={styles.td}>{user.status != 0 ? "Ativo" : "Inativo"}</td>
                       <td className={`${styles.td} ${styles.tdEdite}`}>
-                      <Modal userId={user.id} userName={user.nomeFuncionario} userEmail={user.emailFuncionario} />
-                        <button onClick={() => {handleAddButton(user.id, user.emailFuncionario)}}>
-                          <img src={imageEdite} alt="Editar" className={styles.imageEdite} />
-                        </button>
-                        <a href={user.id}>
-                        </a>
+                      <Modal userId={user.id} userName={user.nomeFuncionario} userEmail={user.emailFuncionario} hasImage={true} />
                         {userId == '1' ?
                           <a href="#" data-confirm="Tem certeza ?" onClick={() => handleUserDelete(user.id)} >
                             <img src={imageDelete} alt="Excluir" className={styles.imageEdite} />

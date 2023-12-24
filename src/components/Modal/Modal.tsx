@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, ReactHTML, useState } from "react";
 import ButtonComponent from "../Button/ButtonComponent";
 import styles from "./Modal.module.css";
 import Input from "../Input/Input";
@@ -13,21 +13,29 @@ interface ModalProps {
   userPermission?: boolean;
   userStatus?: number;
   isOpen?: boolean;
-  btnImage?: string;
+  children?: ReactElement;
+  hasImage?: boolean;
 }
 
 export default function Modal(props: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const imageEdite = "/assets/image/icons8-maintenance-64.png";
 
   return (
     <>
-      <ButtonComponent
-        btnId="adduser"
-        btnName="Adicionar Usuário"
-        btnOnClick={() => setShowModal(true)}
-      >
-        Adicionar
-      </ButtonComponent>
+      {props.hasImage == true ? (
+        <button onClick={() => setShowModal(true)}>
+          <img src={imageEdite} alt="Editar" className={styles.imageEdite} />
+        </button>
+      ) : (
+        <ButtonComponent
+          btnId="adduser"
+          btnName="Adicionar Usuário"
+          btnOnClick={() => setShowModal(true)}
+        >
+          Adicionar
+        </ButtonComponent>
+      )}
       {showModal && (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-sm cursor-auto">
@@ -37,7 +45,9 @@ export default function Modal(props: ModalProps) {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                   <h3 className="text-3xl font-semibold text-black">
-                    Adicionar Novo Usuário
+                    {props.userId != null
+                      ? "Editar Usuário"
+                      : "Adicionar Usuário"}
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -85,7 +95,9 @@ export default function Modal(props: ModalProps) {
                         inputType="password"
                         inputId="senha"
                         inputName="senha"
-                        inputValue={props.userPassword ?? "Senha do Colaborador"}
+                        inputValue={
+                          props.userPassword ?? "Senha do Colaborador"
+                        }
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
                           console.log("Senha")

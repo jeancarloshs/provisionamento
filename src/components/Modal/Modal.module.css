@@ -31,3 +31,19 @@
   outline: 2px solid #059669;
   /* border-color: #4F46E5; */
 }
+
+.spinner, .imageEdite {
+  width: 25px; /* Defina o valor desejado para o spinner */
+  height: 25px; /* Defina o valor desejado para o spinner */
+  display: flex;
+  padding: 3px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.imageEdite:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 3px black);
+}
