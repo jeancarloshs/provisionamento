@@ -71,46 +71,62 @@ export default function Modal(props: ModalProps) {
                         inputType="text"
                         inputId="nome"
                         inputName="nome"
-                        inputValue={props.userName ?? "Nome do Colaborador"}
+                        inputValue={props.userName ?? "Nome do Usuário"}
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
                           console.log("nome")
                         }
-                        inputPlaceHolder="Nome do Colaborador"
+                        inputPlaceHolder="Nome do Usuário"
                       />
                       <Input
                         inputHtmlFor="email"
                         inputType="email"
                         inputId="email"
                         inputName="email"
-                        inputValue={props.userEmail ?? "Email do Colaborador"}
+                        inputValue={props.userEmail ?? "Email do Usuário"}
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
                           console.log("Email")
                         }
-                        inputPlaceHolder="Email do Colaborador"
+                        inputPlaceHolder="Email do Usuário"
                       />
                       <Input
                         inputHtmlFor="senha"
                         inputType="password"
                         inputId="senha"
                         inputName="senha"
-                        inputValue={
-                          props.userPassword ?? "Senha do Colaborador"
-                        }
+                        inputValue={props.userPassword ?? "Senha do Usuário"}
                         inputOnChange={(event) =>
                           // handleOnChangeProvisioning(event, "clientName")
-                          console.log("Senha")
+                          console.log("Senha", props.userPassword)
                         }
                         inputPlaceHolder="Senha do Usuário"
                       />
+                      <label className={styles.label}>
+                        <input
+                          type="radio"
+                          value="ativo"
+                          className={styles.inputLabel}
+                          checked={props.userStatus == 1 ? true : false}
+                        />
+                        Ativo
+                      </label>
+                      <label className={styles.label}>
+                        <input
+                          type="radio"
+                          value="inativo"
+                          className={styles.inputLabel}
+                          checked={props.userStatus == 0 ? true : false}
+                        />
+                        Inativo
+                      </label>
                       <Select
                         selectLabelHtmlFor="cargo"
                         selectName="cargo"
                         selectId="cargo"
                         selectValue="valor"
                         // selectOnChange='{(event) => handleOnChangeProvisioning( event, "externalTechnician")}'
-                        optionValue="Cargo do Colaborador"
+                        optionValue="Cargo do Usuário"
                         optionTypes="{userExternalOptions}"
                       ></Select>
                       <Select
@@ -119,17 +135,13 @@ export default function Modal(props: ModalProps) {
                         selectId="permissao"
                         selectValue="valor"
                         // selectOnChange='{(event) => handleOnChangeProvisioning( event, "externalTechnician")}'
-                        optionValue="Permissão do Colaborador"
-                        optionTypes="{userExternalOptions}"
-                      ></Select>
-                      <Select
-                        selectLabelHtmlFor="status"
-                        selectName="status"
-                        selectId="status"
-                        selectValue="valor"
-                        // selectOnChange='{(event) => handleOnChangeProvisioning( event, "externalTechnician")}'
-                        optionValue="Status do Colaborador"
-                        optionTypes="{userOptions}"
+                        optionValue="Permissão do Usuário"
+                        optionTypes={
+                          <>
+                            <option value={1}>Administrador</option>
+                            <option value={0}>Usuário</option>
+                          </>
+                        }
                       ></Select>
                     </form>
                   </div>
