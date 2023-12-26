@@ -7,7 +7,7 @@ import deleteUser from "@/api/controller/DeleteUser";
 import userConnected from "@/api/middleware/userConnected";
 import { UserList } from "@/api/types/types";
 import ButtonComponent from "../Button/ButtonComponent";
-
+import Modal from "../Modal/Modal";
 
 export default function OpcoesComponent() {
 
@@ -17,6 +17,7 @@ export default function OpcoesComponent() {
   const imageDelete = '/assets/image/icons8-excluir-16.png';
   const [token, setToken] = useState<string>('');
   const [userId, setUserId] = useState<string>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const usersFetch = async () => {
     const userIdFunction = await userConnected();
@@ -42,7 +43,7 @@ export default function OpcoesComponent() {
   }
 
   const handleAddButton = () => {
-    console.log('clicou')
+    console.log('CLICOUUUUUUUUU')
   }
 
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function OpcoesComponent() {
         userList &&
         <>
           <div className={styles.btnAdd}>
-            <ButtonComponent btnId="adduser" btnName="Adicionar Usuário" btnOnClick={handleAddButton}>Adicionar</ButtonComponent>
+            <Modal />
           </div>
           <div className={styles.containerTable}>
             <table className={styles.table}>
@@ -85,9 +86,7 @@ export default function OpcoesComponent() {
                       <td className={styles.td}>{user.permissaoDoColaborador}</td>
                       <td className={styles.td}>{user.status != 0 ? "Ativo" : "Inativo"}</td>
                       <td className={`${styles.td} ${styles.tdEdite}`}>
-                        <a href={user.id}>
-                          <img src={imageEdite} alt="Editar" className={styles.imageEdite} />
-                        </a>
+                      <Modal userId={user.id} userName={user.nomeFuncionario} userEmail={user.emailFuncionario} userStatus={user.status} hasImage={true} />
                         {userId == '1' ?
                           <a href="#" data-confirm="Tem certeza ?" onClick={() => handleUserDelete(user.id)} >
                             <img src={imageDelete} alt="Excluir" className={styles.imageEdite} />
