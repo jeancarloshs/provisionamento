@@ -1,25 +1,39 @@
-import React, { ReactElement, ReactHTML, useState } from "react";
+import React, { ReactElement, ReactHTML, useEffect, useState } from "react";
 import ButtonComponent from "../Button/ButtonComponent";
 import styles from "./Modal.module.css";
 import Input from "../Input/Input";
 import Select from "../Select/Select";
-
-interface ModalProps {
-  userId?: string;
-  userName?: string;
-  userEmail?: string;
-  userPassword?: string;
-  userRole?: string;
-  userPermission?: boolean;
-  userStatus?: number;
-  isOpen?: boolean;
-  children?: ReactElement;
-  hasImage?: boolean;
-}
+import { ModalProps } from "@/api/types/types";
 
 export default function Modal(props: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [checkUserPermission, setCheckUserPermission] = useState<boolean | undefined>(false);
+  const [checkUserActive, setCheckUserActive] = useState<boolean | undefined>(false);
   const imageEdite = "/assets/image/icons8-maintenance-64.png";
+  const [modalInfo, setModalInfo] = useState<ModalProps>({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+    userStatus: 1,
+    userRole: checkUserPermission,
+    userPermission: "",
+  });
+
+  const handleModalChange = (event: any, key: any) => {
+    modalInfo.userStatus = !!checkUserActive;
+    modalInfo.userRole = !!checkUserPermission;
+    setModalInfo({
+      ...modalInfo,
+      [key]: event.target.value
+    })
+    console.log(modalInfo)
+  }
+
+  useEffect(() => {
+    setCheckUserActive(props.userStatus == 1 ? true : false)
+    setCheckUserPermission(props.userRole)
+    handleModalChange;
+  }, [])
 
   return (
     <>
@@ -71,11 +85,8 @@ export default function Modal(props: ModalProps) {
                         inputType="text"
                         inputId="nome"
                         inputName="nome"
-                        inputValue={props.userName ?? "Nome do Usuário"}
-                        inputOnChange={(event) =>
-                          // handleOnChangeProvisioning(event, "clientName")
-                          console.log("nome")
-                        }
+                        inputValue={props.userName ?? modalInfo.userName}
+                        inputOnChange={(event) => handleModalChange(event, "userName")}
                         inputPlaceHolder="Nome do Usuário"
                       />
                       <Input
@@ -83,11 +94,8 @@ export default function Modal(props: ModalProps) {
                         inputType="email"
                         inputId="email"
                         inputName="email"
-                        inputValue={props.userEmail ?? "Email do Usuário"}
-                        inputOnChange={(event) =>
-                          // handleOnChangeProvisioning(event, "clientName")
-                          console.log("Email")
-                        }
+                        inputValue={props.userEmail ?? modalInfo.userEmail}
+                        inputOnChange={(event) => handleModalChange(event, "userEmail")}
                         inputPlaceHolder="Email do Usuário"
                       />
                       <Input
@@ -95,53 +103,42 @@ export default function Modal(props: ModalProps) {
                         inputType="password"
                         inputId="senha"
                         inputName="senha"
-                        inputValue={props.userPassword ?? "Senha do Usuário"}
-                        inputOnChange={(event) =>
-                          // handleOnChangeProvisioning(event, "clientName")
-                          console.log("Senha", props.userPassword)
-                        }
+                        inputValue={props.userPassword ?? modalInfo.userPassword}
+                        inputOnChange={(event) => handleModalChange(event, "userPassword")}
                         inputPlaceHolder="Senha do Usuário"
                       />
-                      <label className={styles.label}>
+                      <label htmlFor="ativo" className={styles.label}>
                         <input
-                          type="radio"
+                          type="checkbox"
                           value="ativo"
+                          onChange={(event) => {
+                            setCheckUserActive(!checkUserActive)
+                            handleModalChange(event, "userStatus")
+                          }}
                           className={styles.inputLabel}
-                          checked={props.userStatus == 1 ? true : false}
+                          checked={checkUserActive ? true : false}
                         />
-                        Ativo
+                        {checkUserActive ? "Ativo" : "Inativo"}
                       </label>
-                      <label className={styles.label}>
+                      <label htmlFor="administrador" className={styles.label}>
                         <input
-                          type="radio"
-                          value="inativo"
+                          type="checkbox"
+                          value="administrador"
+                          onChange={(event) => {setCheckUserPermission(!checkUserPermission)
+                          handleModalChange(event, "userRole")}}
                           className={styles.inputLabel}
-                          checked={props.userStatus == 0 ? true : false}
+                          checked={checkUserPermission ? true : false}
                         />
-                        Inativo
+                        Administrador
                       </label>
                       <Select
                         selectLabelHtmlFor="cargo"
                         selectName="cargo"
                         selectId="cargo"
-                        selectValue="valor"
-                        // selectOnChange='{(event) => handleOnChangeProvisioning( event, "externalTechnician")}'
+                        selectValue={props.userPermission ?? modalInfo.userPermission}
+                        selectOnChange={(event) => handleModalChange(event, "userPermission")}
                         optionValue="Cargo do Usuário"
                         optionTypes="{userExternalOptions}"
-                      ></Select>
-                      <Select
-                        selectLabelHtmlFor="permissao"
-                        selectName="permissao"
-                        selectId="permissao"
-                        selectValue="valor"
-                        // selectOnChange='{(event) => handleOnChangeProvisioning( event, "externalTechnician")}'
-                        optionValue="Permissão do Usuário"
-                        optionTypes={
-                          <>
-                            <option value={1}>Administrador</option>
-                            <option value={0}>Usuário</option>
-                          </>
-                        }
                       ></Select>
                     </form>
                   </div>
@@ -156,7 +153,7 @@ export default function Modal(props: ModalProps) {
                     Fechar
                   </button>
                   <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 hover:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-[#fba828] text-white hover:bg-[#BC4920] active:bg-[#7a3015] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >

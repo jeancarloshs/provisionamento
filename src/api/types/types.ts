@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 export interface UserList {
   id: string;
@@ -32,10 +32,10 @@ export type SelectProps = {
   selectLabelClassName?: string
   selectName: string;
   selectId: string;
-  selectValue: string;
+  selectValue: string | undefined;
   selectOnChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   selectClassName?: string;
-  optionValue: string
+  optionValue: string | undefined;
   optionTypes: ReactNode;
 };
 
@@ -53,12 +53,12 @@ export type InputProps = {
   inputType: string;
   inputId: string;
   inputName: string;
-  inputValue: string;
+  inputValue: string | undefined;
   inputOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputPlaceHolder: string;
 };
 
-export interface UserList {
+export interface ProvisingProps {
   id:             string;
   clientes:       string;
   tecnicoRua:     string;
@@ -84,3 +84,16 @@ export interface ArchivList {
   createdAt: string;
   updateAt:  string;
 };
+
+export interface ModalProps {
+  userId?: string;
+  userName?: string;
+  userEmail?: string;
+  userPassword?: string | undefined;
+  userRole?: any;
+  userPermission?: boolean;
+  userStatus?: number | any;
+  isOpen?: boolean;
+  children?: ReactElement;
+  hasImage?: boolean;
+}
