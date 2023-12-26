@@ -90,8 +90,8 @@ export interface ModalProps {
   userName?: string;
   userEmail?: string;
   userPassword?: string | undefined;
-  userRole?: any;
-  userPermission?: boolean;
+  userRole?: boolean;
+  userPermission?: string;
   userStatus?: number | any;
   isOpen?: boolean;
   children?: ReactElement;
