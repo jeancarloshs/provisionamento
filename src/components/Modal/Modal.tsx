@@ -24,16 +24,54 @@ export default function Modal(props: ModalProps) {
     modalInfo.userRole = !!checkUserPermission;
     setModalInfo({
       ...modalInfo,
-      [key]: event.target.value
-    })
-    console.log(modalInfo)
-  }
+      [key]: event.target.value,
+    });
+    console.log(modalInfo);
+  };
+
+  const handleModalSave = async () => {
+    let missingField = null;
+  
+    switch (true) {
+      case !modalInfo.userName:
+        missingField = 'Nome do Usuário';
+        break;
+      case !modalInfo.userEmail:
+        missingField = 'Email do Usuário';
+        break;
+      case !modalInfo.userPassword:
+        missingField = 'Senha do Usuário';
+        break;
+      case !modalInfo.userStatus:
+        missingField = 'Status do Usuário';
+        break;
+      default:
+        break;
+    }
+  
+    if (missingField) {
+      alert(`Preencha ${missingField}`);
+    } else {
+      setShowModal(false);
+      setModalInfo({
+        userName: "",
+        userEmail: "",
+        userPassword: "",
+        userStatus: 1,
+        userRole: checkUserPermission,
+        userPermission: "",
+      });
+      console.log(modalInfo);
+    }
+  };
+  
 
   useEffect(() => {
-    setCheckUserActive(props.userStatus == 1 ? true : false)
-    setCheckUserPermission(props.userRole)
+    setCheckUserActive(props.userStatus == 1 ? true : false);
+    setCheckUserPermission(props.userRole);
     handleModalChange;
-  }, [])
+    handleModalSave;
+  }, []);
 
   return (
     <>
@@ -86,7 +124,9 @@ export default function Modal(props: ModalProps) {
                         inputId="nome"
                         inputName="nome"
                         inputValue={props.userName ?? modalInfo.userName}
-                        inputOnChange={(event) => handleModalChange(event, "userName")}
+                        inputOnChange={(event) =>
+                          handleModalChange(event, "userName")
+                        }
                         inputPlaceHolder="Nome do Usuário"
                       />
                       <Input
@@ -95,7 +135,9 @@ export default function Modal(props: ModalProps) {
                         inputId="email"
                         inputName="email"
                         inputValue={props.userEmail ?? modalInfo.userEmail}
-                        inputOnChange={(event) => handleModalChange(event, "userEmail")}
+                        inputOnChange={(event) =>
+                          handleModalChange(event, "userEmail")
+                        }
                         inputPlaceHolder="Email do Usuário"
                       />
                       <Input
@@ -103,8 +145,12 @@ export default function Modal(props: ModalProps) {
                         inputType="password"
                         inputId="senha"
                         inputName="senha"
-                        inputValue={props.userPassword ?? modalInfo.userPassword}
-                        inputOnChange={(event) => handleModalChange(event, "userPassword")}
+                        inputValue={
+                          props.userPassword ?? modalInfo.userPassword
+                        }
+                        inputOnChange={(event) =>
+                          handleModalChange(event, "userPassword")
+                        }
                         inputPlaceHolder="Senha do Usuário"
                       />
                       <label htmlFor="ativo" className={styles.label}>
@@ -112,8 +158,8 @@ export default function Modal(props: ModalProps) {
                           type="checkbox"
                           value="ativo"
                           onChange={(event) => {
-                            setCheckUserActive(!checkUserActive)
-                            handleModalChange(event, "userStatus")
+                            setCheckUserActive(!checkUserActive);
+                            handleModalChange(event, "userStatus");
                           }}
                           className={styles.inputLabel}
                           checked={checkUserActive ? true : false}
@@ -124,8 +170,10 @@ export default function Modal(props: ModalProps) {
                         <input
                           type="checkbox"
                           value="administrador"
-                          onChange={(event) => {setCheckUserPermission(!checkUserPermission)
-                          handleModalChange(event, "userRole")}}
+                          onChange={(event) => {
+                            setCheckUserPermission(!checkUserPermission);
+                            handleModalChange(event, "userRole");
+                          }}
                           className={styles.inputLabel}
                           checked={checkUserPermission ? true : false}
                         />
@@ -135,8 +183,12 @@ export default function Modal(props: ModalProps) {
                         selectLabelHtmlFor="cargo"
                         selectName="cargo"
                         selectId="cargo"
-                        selectValue={props.userPermission ?? modalInfo.userPermission}
-                        selectOnChange={(event) => handleModalChange(event, "userPermission")}
+                        selectValue={
+                          props.userPermission ?? modalInfo.userPermission
+                        }
+                        selectOnChange={(event) =>
+                          handleModalChange(event, "userPermission")
+                        }
                         optionValue="Cargo do Usuário"
                         optionTypes="{userExternalOptions}"
                       ></Select>
@@ -155,7 +207,10 @@ export default function Modal(props: ModalProps) {
                   <button
                     className="bg-[#fba828] text-white hover:bg-[#BC4920] active:bg-[#7a3015] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      handleModalSave();
+                      // setShowModal(false);
+                    }}
                   >
                     Salvar
                   </button>
