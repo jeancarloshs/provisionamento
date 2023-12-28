@@ -11,12 +11,13 @@ export default function Modal(props: ModalProps) {
   const [checkUserActive, setCheckUserActive] = useState<boolean | undefined>(false);
   const imageEdite = "/assets/image/icons8-maintenance-64.png";
   const [modalInfo, setModalInfo] = useState<ModalProps>({
-    userName: "",
-    userEmail: "",
-    userPassword: "",
+    userName: props.userName,
+    userEmail: props.userEmail,
+    userPassword: props.userPassword,
     userStatus: 1,
-    userRole: checkUserPermission,
-    userPermission: "",
+    userRole: checkUserActive,
+    userPermission: "Usuário",
+    employeePosition: props.employeePosition
   });
 
   const handleModalChange = (event: any, key: any) => {
@@ -42,8 +43,8 @@ export default function Modal(props: ModalProps) {
       case !modalInfo.userPassword:
         missingField = 'Senha do Usuário';
         break;
-      case !modalInfo.userStatus:
-        missingField = 'Status do Usuário';
+      case !modalInfo.employeePosition:
+        missingField = 'Cargo do Usuário';
         break;
       default:
         break;
@@ -60,6 +61,7 @@ export default function Modal(props: ModalProps) {
         userStatus: 1,
         userRole: checkUserPermission,
         userPermission: "",
+        employeePosition: ""
       });
       console.log(modalInfo);
     }
@@ -123,7 +125,7 @@ export default function Modal(props: ModalProps) {
                         inputType="text"
                         inputId="nome"
                         inputName="nome"
-                        inputValue={props.userName ?? modalInfo.userName}
+                        inputValue={modalInfo.userName}
                         inputOnChange={(event) =>
                           handleModalChange(event, "userName")
                         }
@@ -134,7 +136,7 @@ export default function Modal(props: ModalProps) {
                         inputType="email"
                         inputId="email"
                         inputName="email"
-                        inputValue={props.userEmail ?? modalInfo.userEmail}
+                        inputValue={modalInfo.userEmail}
                         inputOnChange={(event) =>
                           handleModalChange(event, "userEmail")
                         }
@@ -145,9 +147,7 @@ export default function Modal(props: ModalProps) {
                         inputType="password"
                         inputId="senha"
                         inputName="senha"
-                        inputValue={
-                          props.userPassword ?? modalInfo.userPassword
-                        }
+                        inputValue={modalInfo.userPassword}
                         inputOnChange={(event) =>
                           handleModalChange(event, "userPassword")
                         }
@@ -169,10 +169,11 @@ export default function Modal(props: ModalProps) {
                       <label htmlFor="administrador" className={styles.label}>
                         <input
                           type="checkbox"
-                          value="administrador"
+                          value={"Administrador" ?? "Usuário"}
                           onChange={(event) => {
                             setCheckUserPermission(!checkUserPermission);
                             handleModalChange(event, "userRole");
+                            handleModalChange(event, "userPermission");
                           }}
                           className={styles.inputLabel}
                           checked={checkUserPermission ? true : false}
@@ -183,14 +184,17 @@ export default function Modal(props: ModalProps) {
                         selectLabelHtmlFor="cargo"
                         selectName="cargo"
                         selectId="cargo"
-                        selectValue={
-                          props.userPermission ?? modalInfo.userPermission
-                        }
+                        selectValue={modalInfo.employeePosition}
                         selectOnChange={(event) =>
-                          handleModalChange(event, "userPermission")
+                          handleModalChange(event, "employeePosition")
                         }
                         optionValue="Cargo do Usuário"
-                        optionTypes="{userExternalOptions}"
+                        optionTypes={(
+                          <>
+                            <option value={"Instalador"}>Instalador</option>
+                            <option value={"Suporte"}>Suporte</option>
+                          </>
+                        )}
                       ></Select>
                     </form>
                   </div>
