@@ -1,4 +1,10 @@
-import React, { FormEvent, ReactElement, ReactHTML, useEffect, useState } from "react";
+import React, {
+  FormEvent,
+  ReactElement,
+  ReactHTML,
+  useEffect,
+  useState,
+} from "react";
 import ButtonComponent from "../Button/ButtonComponent";
 import styles from "./Modal.module.css";
 import Input from "../Input/Input";
@@ -8,8 +14,12 @@ import { SaveNewUser, UpdateUser } from "@/api/controller/SaveOrUpdateUser";
 
 export default function Modal(props: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [checkUserPermission, setCheckUserPermission] = useState<boolean | undefined>(false);
-  const [checkUserActive, setCheckUserActive] = useState<boolean | undefined>(false);
+  const [checkUserPermission, setCheckUserPermission] = useState<
+    boolean | undefined
+  >(false);
+  const [checkUserActive, setCheckUserActive] = useState<boolean | undefined>(
+    false
+  );
   const [userUpdate, setUserUpdate] = useState();
   const [userCreateOrUpdate, setUserCreateOrUpdate] = useState();
   const imageEdite = "/assets/image/icons8-maintenance-64.png";
@@ -20,7 +30,7 @@ export default function Modal(props: ModalProps) {
     userStatus: 1,
     userRole: checkUserActive,
     userPermission: "Usuário",
-    employeePosition: props.employeePosition
+    employeePosition: props.employeePosition,
   });
 
   const handleModalChange = (event: any, key: any) => {
@@ -35,27 +45,27 @@ export default function Modal(props: ModalProps) {
 
   const handleModalSave = async () => {
     let missingField = null;
-  
+
     switch (true) {
       case !modalInfo.userName:
-        missingField = 'Nome do Usuário';
+        missingField = "Nome do Usuário";
         break;
       case !modalInfo.userEmail:
-        missingField = 'Email do Usuário';
+        missingField = "Email do Usuário";
         break;
       case !modalInfo.userPassword:
-        missingField = 'Senha do Usuário';
+        missingField = "Senha do Usuário";
         break;
       case !modalInfo.employeePosition:
-        missingField = 'Cargo do Usuário';
+        missingField = "Cargo do Usuário";
         break;
       default:
         break;
     }
-  
+
     if (missingField) {
       alert(`Preencha ${missingField}`);
-    } else {    
+    } else {
       setShowModal(false);
       setModalInfo({
         userName: "",
@@ -64,9 +74,8 @@ export default function Modal(props: ModalProps) {
         userStatus: 1,
         userRole: checkUserPermission,
         userPermission: "",
-        employeePosition: ""
+        employeePosition: "",
       });
-
     }
   };
 
@@ -74,48 +83,58 @@ export default function Modal(props: ModalProps) {
     event.preventDefault();
     const token = sessionStorage.getItem("Token") as string;
     let userID = props.userId;
-    let userName =  modalInfo.userName?.trim();
-    let userEmail =  modalInfo.userEmail?.trim();
-    let userPassword =  modalInfo.userPassword?.trim();
-    let userStatus: number =  checkUserActive == true ? 1 : 0;
-    let userPermission =  checkUserPermission == true ? "Administrador" : "Usuário";
-    let userRole =  checkUserPermission;
-    let employeePosition =  modalInfo.employeePosition;
+    let userName = modalInfo.userName?.trim();
+    let userEmail = modalInfo.userEmail?.trim();
+    let userPassword = modalInfo.userPassword?.trim();
+    let userStatus: number = checkUserActive == true ? 1 : 0;
+    let userPermission =
+      checkUserPermission == true ? "Administrador" : "Usuário";
+    let userRole = checkUserPermission;
+    let employeePosition = modalInfo.employeePosition;
 
-    if(userID == undefined || userID == null || userID == "") {
-      let createUser = await SaveNewUser(token, userName!, userEmail!, userPassword!, userStatus, userPermission, userRole!, employeePosition!);
+    handleModalSave();
+
+    if (userID == undefined || userID == null || userID == "") {
+      let createUser = await SaveNewUser(
+        token,
+        userName!,
+        userEmail!,
+        userPassword!,
+        userStatus,
+        userPermission,
+        userRole!,
+        employeePosition!
+      );
       setUserCreateOrUpdate(createUser);
-      if(createUser.success) {
-        alert("Usuário criado com sucesso!!!")
+      if (createUser.success) {
+        alert("Usuário criado com sucesso!!!");
       } else {
         alert(createUser.error);
       }
-      await handleModalSave()
-      return
+      return;
     }
 
-    if(userID !== undefined || userID !== null || userID !== "") {
-      let updateUser = await UpdateUser(token, userID!, userName!, userEmail!, userPassword!, userStatus, userPermission, userRole!, employeePosition!);
+    if (userID !== undefined || userID !== null || userID !== "") {
+      let updateUser = await UpdateUser(
+        token,
+        userID!,
+        userName!,
+        userEmail!,
+        userPassword!,
+        userStatus,
+        userPermission,
+        userRole!,
+        employeePosition!
+      );
       setUserUpdate(updateUser);
       if (updateUser.success) {
-        alert("Usuário Atualizado com sucesso!!!")
+        alert("Usuário Atualizado com sucesso!!!");
       } else {
-        alert(updateUser.error)
+        alert(updateUser.error);
       }
-      await handleModalSave()
-      return
+      return;
     }
-    
-    console.log('Response',{
-      userName,
-      userEmail,
-      userPassword,
-      userStatus,
-      userRole,
-      userPermission,
-      employeePosition
-    })
-  }
+  };
 
   useEffect(() => {
     setCheckUserActive(props.userStatus == 1 ? true : false);
@@ -239,12 +258,12 @@ export default function Modal(props: ModalProps) {
                           handleModalChange(event, "employeePosition")
                         }
                         optionValue="Cargo do Usuário"
-                        optionTypes={(
+                        optionTypes={
                           <>
                             <option value={"Instalador"}>Instalador</option>
                             <option value={"Suporte"}>Suporte</option>
                           </>
-                        )}
+                        }
                       ></Select>
                     </form>
                   </div>
