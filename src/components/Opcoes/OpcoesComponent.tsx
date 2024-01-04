@@ -17,7 +17,6 @@ export default function OpcoesComponent() {
   const imageDelete = '/assets/image/icons8-excluir-16.png';
   const [token, setToken] = useState<string>('');
   const [userId, setUserId] = useState<string>();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const usersFetch = async () => {
     const userIdFunction = await userConnected();
@@ -40,10 +39,6 @@ export default function OpcoesComponent() {
         usersFetch()
       }
     }
-  }
-
-  const handleAddButton = () => {
-    console.log('CLICOUUUUUUUUU')
   }
 
   useEffect(() => {

@@ -1,14 +1,17 @@
-import React, { ReactElement, ReactHTML, useEffect, useState } from "react";
+import React, { FormEvent, ReactElement, ReactHTML, useEffect, useState } from "react";
 import ButtonComponent from "../Button/ButtonComponent";
 import styles from "./Modal.module.css";
 import Input from "../Input/Input";
 import Select from "../Select/Select";
 import { ModalProps } from "@/api/types/types";
+import { SaveNewUser, UpdateUser } from "@/api/controller/SaveOrUpdateUser";
 
 export default function Modal(props: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [checkUserPermission, setCheckUserPermission] = useState<boolean | undefined>(false);
   const [checkUserActive, setCheckUserActive] = useState<boolean | undefined>(false);
+  const [userUpdate, setUserUpdate] = useState();
+  const [userCreateOrUpdate, setUserCreateOrUpdate] = useState();
   const imageEdite = "/assets/image/icons8-maintenance-64.png";
   const [modalInfo, setModalInfo] = useState<ModalProps>({
     userName: props.userName,
@@ -27,7 +30,7 @@ export default function Modal(props: ModalProps) {
       ...modalInfo,
       [key]: event.target.value,
     });
-    console.log(modalInfo);
+    // console.log(modalInfo);
   };
 
   const handleModalSave = async () => {
@@ -52,7 +55,7 @@ export default function Modal(props: ModalProps) {
   
     if (missingField) {
       alert(`Preencha ${missingField}`);
-    } else {
+    } else {    
       setShowModal(false);
       setModalInfo({
         userName: "",
@@ -63,14 +66,61 @@ export default function Modal(props: ModalProps) {
         userPermission: "",
         employeePosition: ""
       });
-      console.log(modalInfo);
+
     }
   };
-  
+
+  const handleFormPost = async (event: any) => {
+    event.preventDefault();
+    const token = sessionStorage.getItem("Token") as string;
+    let userID = props.userId;
+    let userName =  modalInfo.userName?.trim();
+    let userEmail =  modalInfo.userEmail?.trim();
+    let userPassword =  modalInfo.userPassword?.trim();
+    let userStatus: number =  checkUserActive == true ? 1 : 0;
+    let userPermission =  checkUserPermission == true ? "Administrador" : "Usuário";
+    let userRole =  checkUserPermission;
+    let employeePosition =  modalInfo.employeePosition;
+
+    if(userID == undefined || userID == null || userID == "") {
+      let createUser = await SaveNewUser(token, userName!, userEmail!, userPassword!, userStatus, userPermission, userRole!, employeePosition!);
+      setUserCreateOrUpdate(createUser);
+      if(createUser.success) {
+        alert("Usuário criado com sucesso!!!")
+      } else {
+        alert(createUser.error);
+      }
+      await handleModalSave()
+      return
+    }
+
+    if(userID !== undefined || userID !== null || userID !== "") {
+      let updateUser = await UpdateUser(token, userID!, userName!, userEmail!, userPassword!, userStatus, userPermission, userRole!, employeePosition!);
+      setUserUpdate(updateUser);
+      if (updateUser.success) {
+        alert("Usuário Atualizado com sucesso!!!")
+      } else {
+        alert(updateUser.error)
+      }
+      await handleModalSave()
+      return
+    }
+    
+    console.log('Response',{
+      userName,
+      userEmail,
+      userPassword,
+      userStatus,
+      userRole,
+      userPermission,
+      employeePosition
+    })
+  }
 
   useEffect(() => {
     setCheckUserActive(props.userStatus == 1 ? true : false);
     setCheckUserPermission(props.userRole);
+    handleFormPost;
     handleModalChange;
     handleModalSave;
   }, []);
@@ -117,7 +167,7 @@ export default function Modal(props: ModalProps) {
                   <div className={styles.containerForm}>
                     <form
                       method="POST"
-                      // onSubmit=
+                      onSubmit={handleFormPost}
                       className={styles.formProvisionamento}
                     >
                       <Input
@@ -211,10 +261,11 @@ export default function Modal(props: ModalProps) {
                   <button
                     className="bg-[#fba828] text-white hover:bg-[#BC4920] active:bg-[#7a3015] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => {
-                      handleModalSave();
-                      // setShowModal(false);
-                    }}
+                    onClick={handleFormPost}
+                    // onClick={() => {
+                    //   handleModalSave();
+                    //   // setShowModal(false);
+                    // }}
                   >
                     Salvar
                   </button>
