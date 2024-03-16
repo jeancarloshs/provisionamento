@@ -8,6 +8,8 @@ export default async function userConnected() {
   const storageToken = sessionStorage.getItem("Token") as string;
 
   const decodedToken: DecodedToken = jwt_decode(storageToken);
+  const app = decodedToken.app;
+  sessionStorage.setItem("app", app);
 
   try {
     const id = decodedToken.id;

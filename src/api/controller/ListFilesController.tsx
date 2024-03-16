@@ -1,4 +1,5 @@
 "use client";
+import app from '../helpers/storageHelper';
 
 export default async function listFiles(token: string) {
     let urlApi = process.env.NEXT_PUBLIC_URL_API;
@@ -8,7 +9,7 @@ export default async function listFiles(token: string) {
         "Content-Type": "application/json"
     }
 
-    let response = await fetch(`${urlApi}/listaArquivos`, {
+    let response = await fetch(`${urlApi}/listaArquivos/${app}`, {
         method: "GET",
         headers: headersList
     });
