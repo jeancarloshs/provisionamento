@@ -211,7 +211,7 @@ export default function FormVlan() {
 
   // Filtra apenas os instaladores
   const installers = Array.isArray(userExternal)
-    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador")
+    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador" && user.status == 1)
     : [];
 
   // Filtra apenas os funcionários do suporte
@@ -325,7 +325,7 @@ export default function FormVlan() {
             btnOnClick={handleOnProvisioning}
             btnClassName={styles.btn}
           >
-            Provisionar
+            Criar VLAN
           </ButtonComponent>
           <ButtonComponent
             btnId="btnRemover"
@@ -333,23 +333,7 @@ export default function FormVlan() {
             btnOnClick={handleOnRemovingOnu}
             btnClassName={styles.btn}
           >
-            Remover
-          </ButtonComponent>
-          <ButtonComponent
-            btnId="btnMac"
-            btnName="btnMac"
-            btnOnClick={handleOnSearchByPositioning}
-            btnClassName={styles.btn}
-          >
-            Mac
-          </ButtonComponent>
-          <ButtonComponent
-            btnId="btnLocalizar"
-            btnName="btnLocalizar"
-            btnOnClick={handleOnSearchByMac}
-            btnClassName={styles.btn}
-          >
-            Localizar
+            Remover VLAN
           </ButtonComponent>
         </div>
         <div className={styles.codigoGerado}>
@@ -366,13 +350,13 @@ export default function FormVlan() {
           >
             Limpar Dados
           </ButtonComponent>
-          <ButtonComponent
+          {/* <ButtonComponent
             btnId="btnEnviaPlanilha"
             btnName="btnEnviaPlanilha"
             btnOnClick={handleChangeSaveSheetsDb}
           >
             Enviar p/ Planilha
-          </ButtonComponent>
+          </ButtonComponent> */}
           <ButtonComponent
             btnId="btnCopiar"
             btnName="btnCopiar"
