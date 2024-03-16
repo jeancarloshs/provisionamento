@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactHTML, useEffect, useState } from "react";
+import React, { FormEvent, ReactElement, ReactHTML, useEffect, useState } from "react";
 import ButtonComponent from "../Button/ButtonComponent";
 import styles from "./Modal.module.css";
 import Input from "../Input/Input";
@@ -28,6 +28,19 @@ export default function Modal(props: ModalProps) {
     });
     console.log(modalInfo);
   };
+
+  const handleFormPost = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    let userName = modalInfo.userName!.trim();
+    let userEmail = modalInfo.userEmail!.trim();
+    let userPassword = modalInfo.userPassword!.trim();
+    let userStatus = modalInfo.userStatus;
+    let userPermission = modalInfo.userPermission;
+    let userRole = modalInfo.userRole;
+
+    console.log(userName, userEmail, userPassword, userStatus, userPermission, userRole)
+  }
 
   const handleModalSave = async () => {
     let missingField = null;
@@ -115,7 +128,7 @@ export default function Modal(props: ModalProps) {
                   <div className={styles.containerForm}>
                     <form
                       method="POST"
-                      // onSubmit=
+                      onSubmit={handleFormPost}
                       className={styles.formProvisionamento}
                     >
                       <Input
