@@ -7,7 +7,7 @@ const Servicos = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Serviços"
   }, [])
-  tokenVerify()
+  tokenVerify();
   return (
     <>
       <SideBar></SideBar>

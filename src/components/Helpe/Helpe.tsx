@@ -21,7 +21,7 @@ export default function Helpe() {
     try {
       const filesResponse = await listFiles(token);
       const filesData = filesResponse.data;
-      setFiles(filesData[0]);
+      setFiles(filesData);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching files:", error);

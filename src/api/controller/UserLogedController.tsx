@@ -1,5 +1,3 @@
-"use client";
-
 export default async function UserLoged(token: string, id: number) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
   let headersList = {

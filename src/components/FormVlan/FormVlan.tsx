@@ -21,6 +21,7 @@ import Input from "../Input/Input";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import ButtonComponent from "../Button/ButtonComponent";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
+import RemovingVlanModel from "@/api/models/RemovingVlan";
 
 export default function FormVlan() {
   const [token, setToken] = useState<String | null>("");
@@ -125,9 +126,9 @@ export default function FormVlan() {
 
   const handleOnRemovingOnu = async (event: any) => {
     event.preventDefault();
-    let positioning = provisionamentoState.positioning.trim();
-
-    let data: any = RemoveOnuModel(positioning);
+    let positioning = provisionamentoState.vlan.trim();
+    
+    let data: any = await RemovingVlanModel(positioning);
     setResProvisioning(data);
   };
 
@@ -283,7 +284,7 @@ export default function FormVlan() {
               inputPlaceHolder="VLAN"
             />
 
-            <Select
+            {/* <Select
               selectLabelHtmlFor="tipoDeServico"
               selectName="tipoDeServico"
               selectId="tipoDeServico"
@@ -317,7 +318,7 @@ export default function FormVlan() {
               }
               optionValue="Suporte"
               optionTypes={userInternalOptions}
-            ></Select>
+            ></Select> */}
           </form>
           <ButtonComponent
             btnId="btnProvisionar"

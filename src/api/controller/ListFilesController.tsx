@@ -1,8 +1,8 @@
-"use client";
-import app from '../helpers/storageHelper';
+"user client";
 
 export default async function listFiles(token: string) {
     let urlApi = process.env.NEXT_PUBLIC_URL_API;
+    let app = sessionStorage.getItem("app");
     let headersList = {
         "Accept": "*/*",
         "Authorization": `Bearer ${token}`,
@@ -15,6 +15,6 @@ export default async function listFiles(token: string) {
     });
 
     let data = await response.json();
-    // console.log("DATA:", data);
+    console.log("DATA:", data);
     return data
 }

@@ -1,7 +1,6 @@
-import app from "../helpers/storageHelper";
-
 export default async function listRoles(storedToken: string) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     Accept: "*/*",
     Authorization: `Bearer ${storedToken}`,

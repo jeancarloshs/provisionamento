@@ -8,7 +8,7 @@ const Ajuda = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Ajuda"
   }, [])
-  tokenVerify()
+  tokenVerify();
   return (
     <>
       <SideBar></SideBar>

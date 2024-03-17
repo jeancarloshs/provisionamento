@@ -8,7 +8,7 @@ const Bridge = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Bridge"
   }, [])
-  tokenVerify()
+  tokenVerify();
   return (
     <>
       <SideBar></SideBar>
