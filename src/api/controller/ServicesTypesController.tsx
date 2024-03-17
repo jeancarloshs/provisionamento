@@ -1,13 +1,12 @@
-"use client";
-
 export default async function servicesTypes(storedToken: string) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     Accept: "*/*",
     Authorization: `Bearer ${storedToken}`,
   };
 
-  let response = await fetch(`${urlApi}/listaServicos`, {
+  let response = await fetch(`${urlApi}/listaServicos/${app}`, {
     method: "GET",
     headers: headersList,
   });

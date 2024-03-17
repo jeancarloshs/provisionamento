@@ -8,7 +8,7 @@ const Opcoes = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Opções"
   }, [])
-  tokenVerify()
+  tokenVerify();
   return (
     <>
       <SideBar></SideBar>

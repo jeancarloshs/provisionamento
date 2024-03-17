@@ -281,10 +281,10 @@ export default function Modal(props: ModalProps) {
                     className="bg-[#fba828] text-white hover:bg-[#BC4920] active:bg-[#7a3015] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={handleFormPost}
-                    // onClick={() => {
-                    //   handleModalSave();
-                    //   // setShowModal(false);
-                    // }}
+                  // onClick={() => {
+                  //   handleModalSave();
+                  //   // setShowModal(false);
+                  // }}
                   >
                     Salvar
                   </button>

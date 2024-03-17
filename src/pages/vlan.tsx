@@ -8,7 +8,7 @@ const Vlan = () => {
   useEffect(() => {
     document.title = "Provisionamento FTTH Naxos Telecom - Vlan"
   }, [])
-  tokenVerify()
+  tokenVerify();
   return (
     <>
       <SideBar></SideBar>

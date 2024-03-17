@@ -21,6 +21,7 @@ import Input from "../Input/Input";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import ButtonComponent from "../Button/ButtonComponent";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
+import RemovingVlanModel from "@/api/models/RemovingVlan";
 
 export default function FormVlan() {
   const [token, setToken] = useState<String | null>("");
@@ -125,9 +126,9 @@ export default function FormVlan() {
 
   const handleOnRemovingOnu = async (event: any) => {
     event.preventDefault();
-    let positioning = provisionamentoState.positioning.trim();
-
-    let data: any = RemoveOnuModel(positioning);
+    let positioning = provisionamentoState.vlan.trim();
+    
+    let data: any = await RemovingVlanModel(positioning);
     setResProvisioning(data);
   };
 
@@ -211,7 +212,7 @@ export default function FormVlan() {
 
   // Filtra apenas os instaladores
   const installers = Array.isArray(userExternal)
-    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador")
+    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador" && user.status == 1)
     : [];
 
   // Filtra apenas os funcionários do suporte
@@ -283,7 +284,7 @@ export default function FormVlan() {
               inputPlaceHolder="VLAN"
             />
 
-            <Select
+            {/* <Select
               selectLabelHtmlFor="tipoDeServico"
               selectName="tipoDeServico"
               selectId="tipoDeServico"
@@ -317,7 +318,7 @@ export default function FormVlan() {
               }
               optionValue="Suporte"
               optionTypes={userInternalOptions}
-            ></Select>
+            ></Select> */}
           </form>
           <ButtonComponent
             btnId="btnProvisionar"
@@ -325,7 +326,7 @@ export default function FormVlan() {
             btnOnClick={handleOnProvisioning}
             btnClassName={styles.btn}
           >
-            Provisionar
+            Criar VLAN
           </ButtonComponent>
           <ButtonComponent
             btnId="btnRemover"
@@ -333,23 +334,7 @@ export default function FormVlan() {
             btnOnClick={handleOnRemovingOnu}
             btnClassName={styles.btn}
           >
-            Remover
-          </ButtonComponent>
-          <ButtonComponent
-            btnId="btnMac"
-            btnName="btnMac"
-            btnOnClick={handleOnSearchByPositioning}
-            btnClassName={styles.btn}
-          >
-            Mac
-          </ButtonComponent>
-          <ButtonComponent
-            btnId="btnLocalizar"
-            btnName="btnLocalizar"
-            btnOnClick={handleOnSearchByMac}
-            btnClassName={styles.btn}
-          >
-            Localizar
+            Remover VLAN
           </ButtonComponent>
         </div>
         <div className={styles.codigoGerado}>
@@ -366,13 +351,13 @@ export default function FormVlan() {
           >
             Limpar Dados
           </ButtonComponent>
-          <ButtonComponent
+          {/* <ButtonComponent
             btnId="btnEnviaPlanilha"
             btnName="btnEnviaPlanilha"
             btnOnClick={handleChangeSaveSheetsDb}
           >
             Enviar p/ Planilha
-          </ButtonComponent>
+          </ButtonComponent> */}
           <ButtonComponent
             btnId="btnCopiar"
             btnName="btnCopiar"

@@ -248,7 +248,7 @@ export default function FormBridge() {
 
   // Filtra apenas os instaladores
   const installers = Array.isArray(userExternal)
-    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador")
+    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador" && user.status == 1)
     : [];
 
   // Filtra apenas os funcionários do suporte

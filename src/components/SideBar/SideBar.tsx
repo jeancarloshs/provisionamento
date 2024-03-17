@@ -9,6 +9,7 @@ import Provisionamento from "@/pages/provisionamento";
 import NavBar from "../NavBar/NavBar";
 import jwt_decode from "jwt-decode";
 import UserLoged from "@/api/controller/UserLogedController";
+import userConnected from "@/api/middleware/userConnected";
 
 let pages = [
   { name: "/", rota: "/" },
@@ -62,6 +63,7 @@ export default function SideBar() {
     getToken(storedToken);
 
     const fetchUserLoged = async () => {
+      await userConnected();
       try {
         interface DecodedToken {
           id: number;
@@ -85,6 +87,7 @@ export default function SideBar() {
 
   const exit = () => {
     sessionStorage.removeItem("Token");
+    sessionStorage.removeItem("app");
     pages[0].name;
   };
 
