@@ -9,7 +9,7 @@ export interface UserList {
   status:                   number;
   permissaoDoColaborador:   string;
   createdAt:                string;
-  updateAt:                 string;
+  updatedAt:                string;
 };
 
 export interface DecodedToken {
@@ -75,7 +75,7 @@ export interface ServiceList {
   id:            string;
   tipoDeServico: string;
   createdAt:     Date;
-  updateAt:      Date;
+  updatedAt:     Date;
 };
 
 export interface ArchivList {
@@ -83,7 +83,7 @@ export interface ArchivList {
   nome:      string;
   url:       string;
   createdAt: string;
-  updateAt:  string;
+  updatedAt: string;
 };
 
 export interface ModalProps {
