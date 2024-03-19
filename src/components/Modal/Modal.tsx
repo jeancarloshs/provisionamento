@@ -23,6 +23,9 @@ export default function Modal(props: ModalProps) {
   const [userUpdate, setUserUpdate] = useState();
   const [userCreateOrUpdate, setUserCreateOrUpdate] = useState();
   const imageEdite = "/assets/image/icons8-maintenance-64.png";
+  const showPass = "/assets/image/olho.png";
+  const hidePass = "/assets/image/visivel.png";
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [modalInfo, setModalInfo] = useState<ModalProps>({
     userName: props.userName,
     userEmail: props.userEmail,
@@ -211,9 +214,15 @@ export default function Modal(props: ModalProps) {
                         }
                         inputPlaceHolder="Email do Usuário"
                       />
+                      <button className={styles.btnPassWord} onChange={(event) => {
+                        event.preventDefault();
+                        setShowPassword(!false)
+                      }}>
+                        <img src={showPassword ? showPass : hidePass} className={styles.imgPassWord} alt="Senha Oculta" />
+                      </button>
                       <Input
                         inputHtmlFor="senha"
-                        inputType="password"
+                        inputType={showPassword ? "text" : "password"}
                         inputId="senha"
                         inputName="senha"
                         inputValue={modalInfo.userPassword}
