@@ -214,12 +214,12 @@ export default function Modal(props: ModalProps) {
                         }
                         inputPlaceHolder="Email do Usuário"
                       />
-                      <button className={styles.btnPassWord} onChange={(event) => {
+                      {/* {<button className={styles.btnPassWord} onChange={(event) => {
                         event.preventDefault();
                         setShowPassword(!false)
                       }}>
                         <img src={showPassword ? showPass : hidePass} className={styles.imgPassWord} alt="Senha Oculta" />
-                      </button>
+                      </button>} */}
                       <Input
                         inputHtmlFor="senha"
                         inputType={showPassword ? "text" : "password"}
