@@ -58,3 +58,10 @@
   margin: 0 5px 15px 0;
   padding: 5px 5px;
 }
+
+.btnPassWord {
+  width: 35px;
+  height: 35px;
+  padding: 5px 5px;
+  margin-left: 90%;
+}

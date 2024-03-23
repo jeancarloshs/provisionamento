@@ -5,6 +5,7 @@ export interface UserList {
   nomeFuncionario:          string;
   cargoFuncionario:         string;
   emailFuncionario:         string;
+  senhaFuncionario:         string;
   admin:                    boolean;
   status:                   number;
   permissaoDoColaborador:   string;
