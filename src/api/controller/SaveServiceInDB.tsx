@@ -9,9 +9,10 @@ export default async function SaveServiceInDB(
   serviceType: number,
   positioning: string,
   externalTechnician: number,
-  internalTechnician: number
+  internalTechnician: number,
 ) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     "Accept": "*/*",
     "Authorization": `Bearer ${token}`,
@@ -23,10 +24,11 @@ export default async function SaveServiceInDB(
     "enderecoCliente": `${clientAddress}`,
     "tecnicoRua": externalTechnician,
     "numeroDeSerie": `${serialNumber}`,
+    "tipoDeServico": serviceType,
     "posicionamento": `${positioning}`,
     "patrimonioNaxos": equipmentAssets,
     "tecnicoSup": internalTechnician,
-    "tipoDeServico": serviceType
+    "app": app
   });
 
   let response = await fetch(`${urlApi}/provisionaClientes`, {

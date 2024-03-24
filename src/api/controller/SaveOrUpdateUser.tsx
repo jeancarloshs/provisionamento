@@ -11,6 +11,7 @@ export async function SaveNewUser(
   cargoFuncionario: string
 ) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     Accept: "*/*",
     Authorization: `Bearer ${storedToken}`,
@@ -50,6 +51,7 @@ export async function UpdateUser(
   cargoFuncionario: string
 ) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     Accept: "*/*",
     Authorization: `Bearer ${storedToken}`,
