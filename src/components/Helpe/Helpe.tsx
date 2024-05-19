@@ -82,7 +82,7 @@ export default function Helpe() {
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-            {Array.isArray(files) &&
+            {Array.isArray(files) ? (
               files?.map((item, index) => (
                 <tr key={index} className="">
                   <td className={styles.td}>
@@ -95,7 +95,6 @@ export default function Helpe() {
                       {item.nome}
                     </a>
                   </td>
-                  {}
                   {userId == "1" ? (
                     <td className={`${styles.td} ${styles.tdEdite}`}>
                       {/* <Modal userId={user.id} userName={user.nomeFuncionario} userEmail={user.emailFuncionario} userPassword={user.senhaFuncionario} userStatus={user.status} userRole={user.admin} employeePosition={user.cargoFuncionario} hasImage={true} /> */}
@@ -111,7 +110,12 @@ export default function Helpe() {
                     ""
                   )}
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td className={styles.td}>Nenhum Arquivo Encontrado</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
