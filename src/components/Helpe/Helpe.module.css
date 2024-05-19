@@ -1,22 +1,3 @@
-.main {
-  margin-top: 4%;
-  margin-left: 250px;
-  padding: 0px 10px;
-  /* max-width: 1200px; */
-  /* display: flex;
-  flex: 2; */
-  justify-content: center;
-}
-
-.links {
-  color: #818181;
-  transition: all 0.5s ease;
-}
-
-.links:hover {
-  color: #f1f1f1;
-}
-
 .containerTable {
   display: flex;
   justify-content: center;
@@ -52,11 +33,6 @@
   color: #fff;
 }
 
-.tdUserInactive {
-  color: #e65757;
-  border: 1px solid rgba(173, 173, 173, 0.137);
-}
-
 .tdEdite {
   border: none;
   display: flex;
@@ -64,6 +40,11 @@
   justify-content: space-evenly;
   align-self: center;
   align-items: center;
+}
+
+.tdCenter {
+  text-align: center;
+  vertical-align: middle;
 }
 
 .td:hover {
