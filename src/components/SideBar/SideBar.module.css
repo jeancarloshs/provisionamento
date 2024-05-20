@@ -156,9 +156,32 @@
   color: rgb(255, 200, 200);
 }
 
+@keyframes showSidebar {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: 175px; /* TAMANHO DA SIDEBAR NA MIDIA QUERY */
+  }
+}
+
+.svg {
+  display: none;
+  position: fixed;
+  color: white;
+  width: 30px;
+  height: 30px;
+  margin-top: 32px;
+  margin-left: 32px;
+  cursor: pointer;
+  z-index: 2;
+}
+
 /* ################################################################################################ */
 
-@media only screen and (max-device-width: 1200px) {
+@media screen and (max-width: 1200px) {
   .sidenav {
     height: 100%;
     width: 175px;
@@ -166,9 +189,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    /* background-color: #111; */
     background-color: #202123;
-    /* background-color: #172138; */
     overflow-x: hidden;
     padding-top: 20px;
   }
@@ -189,10 +210,33 @@
   }
 }
 
-@media only screen and (max-device-width: 720px) {
-  /* .sidenav {
+@media screen and (max-width: 720px) {
+  .sidenav {
+    animation: showSidebar .5s;
+  }
+
+  .imgSideNav {
     display: none;
-  } */
+  }
+
+  .ul {
+    /* width: 75px;
+    height: 33px;
+    margin: 0 auto; */
+    margin-top: 75px;
+  }
+
+  .svg {
+    display: block;
+    /* position: fixed;
+    color: white;
+    width: 30px;
+    height: 30px;
+    margin-top: 32px;
+    margin-left: 32px;
+    cursor: pointer;
+    z-index: 2; */
+  }
 }
 
 @media screen and (max-height: 450px) {
