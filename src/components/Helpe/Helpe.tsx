@@ -74,7 +74,7 @@ export default function Helpe() {
       )}
       <div className={styles.containerTable}>
         <table className={styles.table}>
-          <caption className={styles.caption}>Ajuda</caption>
+          <caption className={styles.caption}>AJUDA</caption>
           <thead className={styles.thead}>
             <tr className={styles.tableTr}>
               <th className={styles.th}>Nome Funcionario</th>
