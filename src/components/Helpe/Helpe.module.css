@@ -77,3 +77,15 @@
   margin-left: 20px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 720px) {
+  .table {
+    width: 90%;
+    margin-top: 40px;
+    margin-left: 0px !important;
+  }
+
+  .btnAdd {
+    margin-bottom: -40px;
+  }
+}
