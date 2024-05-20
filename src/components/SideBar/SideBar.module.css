@@ -163,7 +163,7 @@
   }
   to {
     opacity: 1;
-    width: 175px; /* TAMANHO DA SIDEBAR NA MIDIA QUERY */
+    width: 220px; /* TAMANHO DA SIDEBAR NA MIDIA QUERY */
   }
 }
 
@@ -184,7 +184,7 @@
 @media screen and (max-width: 1200px) {
   .sidenav {
     height: 100%;
-    width: 175px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     top: 0;
