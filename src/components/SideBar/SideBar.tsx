@@ -27,7 +27,6 @@ let listPages = [
   { name: "/vlan", rota: "Vlan" },
   { name: "/usuarios", rota: "Usuarios" },
   { name: "/servicos", rota: "Servicos" },
-  { name: "/arquivos", rota: "Arquivos" },
 ];
 
 const listLinksActivation = [
@@ -45,7 +44,6 @@ const listLinksActivation = [
 const listLinksOptions = [
   { name: "Usuarios", href: listPages[4].name, icon: "", typeMenu: "Opções" },
   { name: "Serviços", href: listPages[5].name, icon: "", typeMenu: "Opções" },
-  { name: "Arquivos", href: listPages[6].name, icon: "", typeMenu: "Opções" },
 ];
 
 const links = [
