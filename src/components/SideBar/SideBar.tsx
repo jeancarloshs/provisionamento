@@ -64,7 +64,7 @@ export default function SideBar() {
   const showSideBar = () => setSideBar(!sideBar);
 
   const handleResize = () => {
-    if (window.innerWidth > 720) {
+    if (window.innerWidth > 1024) {
       setSideBar(true);
     } else {
       setSideBar(false);

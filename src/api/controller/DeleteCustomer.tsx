@@ -15,6 +15,6 @@ export default async function deleteCustomer(storedToken: string, customerId: nu
    });
    
    let data = await response.json();
-   console.log(data);
+  //  console.log(data);
    return data;
 }

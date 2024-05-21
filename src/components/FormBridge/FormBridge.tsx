@@ -22,6 +22,7 @@ import Select from '../Select/Select';
 import ButtonComponent from "../Button/ButtonComponent";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
+import Container from "../Container/ContainerComponent";
 
 export default function FormBridge() {
   const [token, setToken] = useState<String | null>("");
@@ -289,7 +290,7 @@ export default function FormBridge() {
 
   return (
     <>
-      <div className={styles.main}>
+      <Container>
         <div className={styles.containerForm}>
           <form
             method="POST"
@@ -484,7 +485,7 @@ export default function FormBridge() {
             Copiar
           </ButtonComponent>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

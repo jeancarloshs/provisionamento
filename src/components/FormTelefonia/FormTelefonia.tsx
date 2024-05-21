@@ -21,6 +21,7 @@ import Select from '../Select/Select';
 import ButtonComponent from "../Button/ButtonComponent";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
+import Container from "../Container/ContainerComponent";
 
 export default function FormTelefonia() {
   const [token, setToken] = useState<String | null>("");
@@ -275,7 +276,7 @@ export default function FormTelefonia() {
 
   return (
     <>
-      <div className={styles.main}>
+      <Container>
         <div className={styles.containerForm}>
           <form
             method="POST"
@@ -477,7 +478,7 @@ export default function FormTelefonia() {
             Copiar
           </ButtonComponent>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

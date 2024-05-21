@@ -15,6 +15,6 @@ export default async function deleteArchive(storedToken: string, archiveId: numb
    });
    
    let data = await response.json();
-   console.log(data);
+  //  console.log(data);
    return data;
 }

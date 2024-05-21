@@ -15,6 +15,6 @@ export default async function deleteService(storedToken: string, serviceId: numb
    });
    
    let data = await response.json();
-   console.log(data);
+  //  console.log(data);
    return data;
 }

@@ -21,6 +21,7 @@ import ButtonComponent from "../Button/ButtonComponent";
 import Input from "../Input/Input";
 import Select from "../Select/Select";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
+import Container from "../Container/ContainerComponent";
 
 export default function FormProvisionamento() {
   const [token, setToken] = useState<String | null>("");
@@ -272,7 +273,7 @@ export default function FormProvisionamento() {
 
   return (
     <>
-      <div className={styles.main}>
+      <Container>
         <div className={styles.containerForm}>
           <form
             method="POST"
@@ -438,7 +439,7 @@ export default function FormProvisionamento() {
             Copiar
           </ButtonComponent>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

@@ -1,0 +1,16 @@
+.main {
+  margin-top: 4%;
+  margin-left: 220px;
+  padding: 0px 10px;
+  /* max-width: 1200px; */
+  display: flex;
+  flex: 2;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 720px) {
+  .main {
+    margin-top: 80px;
+    margin-left: 20px;
+  }
+}
