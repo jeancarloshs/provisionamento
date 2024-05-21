@@ -24,3 +24,10 @@
     width: 300px;
   }
 }
+
+@media screen and (max-width: 719px) and (min-width: 375px) {
+  .btnProvisionamento {
+    width: 100%;
+    margin-left: -15px;
+  }
+}

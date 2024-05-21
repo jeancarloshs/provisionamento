@@ -212,7 +212,7 @@
 
 @media screen and (max-width: 1024px) and (min-width: 720px) {
   .sidenav {
-    animation: showSidebar .5s;
+    animation: showSidebar 0.5s;
   }
 
   .imgSideNav {
@@ -228,11 +228,42 @@
   }
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 719px) and (min-width: 375px) {
   .sidenav {
-    padding-top: 15px;
+    animation: showSidebar 0.5s;
   }
-  .sidenav a {
-    font-size: 18px;
+
+  .imgSideNav {
+    display: none;
+  }
+
+  .ul {
+    margin-top: 75px;
+  }
+
+  .svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .sidenav {
+    animation: showSidebar 0.5s;
+  }
+
+  .imgSideNav {
+    display: none;
+  }
+
+  .ul {
+    margin-top: 75px;
+  }
+
+  .svg {
+    width: 20px;
+    height: 20px;
+    display: block;
   }
 }

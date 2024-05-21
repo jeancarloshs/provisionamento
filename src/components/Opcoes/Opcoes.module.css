@@ -120,3 +120,16 @@
     margin-bottom: -40px;
   }
 }
+
+@media screen and (max-width: 719px) and (min-width: 375px) {
+  .table {
+    width: 90%;
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+
+  .btnAdd {
+    margin-top: 15%;
+    margin-bottom: -40px;
+  }
+}

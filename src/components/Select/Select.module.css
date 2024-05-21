@@ -1,20 +1,40 @@
 .formSelect {
-    width: 300px;
-    margin-bottom: 10px;
-    padding: 5px 5px;
-    border-radius: 5px;
-  }
+  width: 300px;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
 
-.inputProvisionamento, .formSelect {
-    color: white;
-    outline: 2px solid transparent;
-    transition: all ease-in-out 0.2s;
-    background-color: #1D2432;
-    border-radius: 5px !important;
+.inputProvisionamento,
+.formSelect {
+  color: white;
+  outline: 2px solid transparent;
+  transition: all ease-in-out 0.2s;
+  background-color: #1d2432;
+  border-radius: 5px !important;
+}
+
+.inputProvisionamento:focus,
+.formSelect:focus {
+  box-shadow: 0 0 0 0;
+  outline: 2px solid #6366f1;
+  /* border-color: #4F46E5; */
+}
+
+@media screen and (max-width: 1024px) {
+  .formSelect {
+    width: 300px;
   }
-  
-  .inputProvisionamento:focus, .formSelect:focus {
-    box-shadow: 0 0 0 0;
-    outline: 2px solid #6366F1;
-    /* border-color: #4F46E5; */
+}
+
+@media screen and (max-width: 720px) {
+  .formSelect {
+    width: 300px;
   }
+}
+
+@media screen and (max-width: 719px) and (min-width: 375px) {
+  .formSelect {
+    width: 100%;
+  }
+}

@@ -14,3 +14,11 @@
     margin-left: 20px;
   }
 }
+
+@media screen and (max-width: 719px) and (min-width: 375px) {
+  .main {
+    margin-top: 80px;
+    margin-left: 20px;
+    display: block;
+  }
+}
