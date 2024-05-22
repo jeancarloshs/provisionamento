@@ -111,30 +111,35 @@ export default function FormProvisionamento() {
       internalTechnician
     );
     try {
-      const selectElement = document.getElementById(
-        "tipoDeServico"
-      ) as HTMLSelectElement | null;
-      const selectedOption =
-        selectElement?.options[selectElement.selectedIndex];
-      const selectedTypeIdString = selectedOption?.getAttribute("datatype");
-      const selectedTypeId: any = selectedTypeIdString ? parseInt(selectedTypeIdString, 10) : undefined;
+      const tipoDeServicoValue = document.getElementById("tipoDeServico") as HTMLSelectElement | null;
+      const instaladorValue = document.getElementById("instalador") as HTMLSelectElement | null;
+      const suporteValue = document.getElementById("suporte") as HTMLSelectElement | null;
+      const tipoDeServicoSelecionado = tipoDeServicoValue?.options[tipoDeServicoValue.selectedIndex];
+      const tipoDeServicoID = tipoDeServicoSelecionado?.getAttribute("datatype");
+      const instaladorSelecionado = instaladorValue?.options[instaladorValue.selectedIndex];
+      const instaladorID = instaladorSelecionado?.getAttribute("datatype");
+      const suporteSelecionado = suporteValue?.options[suporteValue.selectedIndex];
+      const suporteID = suporteSelecionado?.getAttribute("datatype");
+      const selectTipoDeServicoID: any = tipoDeServicoID ? parseInt(tipoDeServicoID, 10) : undefined;
+      const selectInstaladorID: any = instaladorID ? parseInt(instaladorID, 10) : undefined;
+      const selectSuporteID: any = suporteID ? parseInt(suporteID, 10) : undefined;
       const saveSupaDB: any = await SaveServiceInDB(
         token,
         clientName,
         clientAddress,
         equipmentAssets,
         serialNumber,
-        selectedTypeId,
+        selectTipoDeServicoID,
         positioning,
-        externalTechnician,
-        internalTechnician
+        selectInstaladorID,
+        selectSuporteID
       );
+      setSaveSupaDB(saveSupaDB);
+      setSaveSheetsDB(saveSheetDB);
       console.log("PAGE", saveSupaDB);
     } catch (error) {
       console.error("Erro ao salvar:", error);
     }
-    // setSaveSupaDB(saveSupaDB);
-    // setSaveSheetsDB(saveSheetDB);
   };
 
   const handleOnProvisioning = async (event: any) => {
@@ -400,7 +405,6 @@ export default function FormProvisionamento() {
               optionTypes={userInternalOptions}
             ></Select>
           </form>
-
           <ButtonComponent
             btnId="btnProvisionar"
             btnName="btnProvisionar"
@@ -409,6 +413,7 @@ export default function FormProvisionamento() {
           >
             Provisionar
           </ButtonComponent>
+
           <ButtonComponent
             btnId="btnRemover"
             btnName="btnRemover"
