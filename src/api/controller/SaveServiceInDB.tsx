@@ -38,6 +38,6 @@ export default async function SaveServiceInDB(
   });
 
   let data = await response.json();
-  // console.log("DATA:", data);
+  console.log("DATA:", data);
   return data
 }

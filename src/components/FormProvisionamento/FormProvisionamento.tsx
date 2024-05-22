@@ -110,9 +110,31 @@ export default function FormProvisionamento() {
       servicesType,
       internalTechnician
     );
-    // let saveSupaDB: any = await SaveServiceInDB(token, clientName, clientAddress, equipmentAssets, serialNumber, servicesType, positioning, externalTechnician, internalTechnician);
+    try {
+      const selectElement = document.getElementById(
+        "tipoDeServico"
+      ) as HTMLSelectElement | null;
+      const selectedOption =
+        selectElement?.options[selectElement.selectedIndex];
+      const selectedTypeIdString = selectedOption?.getAttribute("datatype");
+      const selectedTypeId: any = selectedTypeIdString ? parseInt(selectedTypeIdString, 10) : undefined;
+      const saveSupaDB: any = await SaveServiceInDB(
+        token,
+        clientName,
+        clientAddress,
+        equipmentAssets,
+        serialNumber,
+        selectedTypeId,
+        positioning,
+        externalTechnician,
+        internalTechnician
+      );
+      console.log("PAGE", saveSupaDB);
+    } catch (error) {
+      console.error("Erro ao salvar:", error);
+    }
     // setSaveSupaDB(saveSupaDB);
-    setSaveSheetsDB(saveSheetDB);
+    // setSaveSheetsDB(saveSheetDB);
   };
 
   const handleOnProvisioning = async (event: any) => {
@@ -232,7 +254,9 @@ export default function FormProvisionamento() {
 
   // Filtra apenas os instaladores
   const installers = Array.isArray(userExternal)
-    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador" && user.status == 1)
+    ? userExternal.filter(
+        (user) => user.cargoFuncionario === "Instalador" && user.status == 1
+      )
     : [];
 
   // Filtra apenas os funcionários do suporte
@@ -243,7 +267,7 @@ export default function FormProvisionamento() {
   // Verifica se userExternal é um array antes de fazer o mapeamento
   const servicesTypesOptions = Array.isArray(typesServices) ? (
     typesServices.map((type, index) => (
-      <option key={index} value={type.tipoDeServico}>
+      <option key={index} datatype={type.id} value={type.tipoDeServico}>
         {type.tipoDeServico}
       </option>
     ))
@@ -253,7 +277,7 @@ export default function FormProvisionamento() {
 
   const userExternalOptions = Array.isArray(installers) ? (
     installers.map((user, index) => (
-      <option key={index} value={user.nomeFuncionario}>
+      <option key={index} datatype={user.id} value={user.nomeFuncionario}>
         {user.cargoFuncionario == "Instalador" ? user.nomeFuncionario : ""}
       </option>
     ))
@@ -263,7 +287,7 @@ export default function FormProvisionamento() {
 
   const userInternalOptions = Array.isArray(userInternal) ? (
     userInternal.map((user, index) => (
-      <option key={index} value={user.nomeFuncionario}>
+      <option key={index} datatype={user.id} value={user.nomeFuncionario}>
         {user.cargoFuncionario == "Suporte" ? user.nomeFuncionario : ""}
       </option>
     ))
