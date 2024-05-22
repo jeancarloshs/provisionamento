@@ -15,6 +15,6 @@ export default async function listFiles(token: string) {
     });
 
     let data = await response.json();
-    console.log("DATA:", data);
+    // console.log("DATA:", data);
     return data
 }

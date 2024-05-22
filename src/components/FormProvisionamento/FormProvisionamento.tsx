@@ -21,6 +21,7 @@ import ButtonComponent from "../Button/ButtonComponent";
 import Input from "../Input/Input";
 import Select from "../Select/Select";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
+import Container from "../Container/ContainerComponent";
 
 export default function FormProvisionamento() {
   const [token, setToken] = useState<String | null>("");
@@ -109,9 +110,36 @@ export default function FormProvisionamento() {
       servicesType,
       internalTechnician
     );
-    // let saveSupaDB: any = await SaveServiceInDB(token, clientName, clientAddress, equipmentAssets, serialNumber, servicesType, positioning, externalTechnician, internalTechnician);
-    // setSaveSupaDB(saveSupaDB);
-    setSaveSheetsDB(saveSheetDB);
+    try {
+      const tipoDeServicoValue = document.getElementById("tipoDeServico") as HTMLSelectElement | null;
+      const instaladorValue = document.getElementById("instalador") as HTMLSelectElement | null;
+      const suporteValue = document.getElementById("suporte") as HTMLSelectElement | null;
+      const tipoDeServicoSelecionado = tipoDeServicoValue?.options[tipoDeServicoValue.selectedIndex];
+      const tipoDeServicoID = tipoDeServicoSelecionado?.getAttribute("datatype");
+      const instaladorSelecionado = instaladorValue?.options[instaladorValue.selectedIndex];
+      const instaladorID = instaladorSelecionado?.getAttribute("datatype");
+      const suporteSelecionado = suporteValue?.options[suporteValue.selectedIndex];
+      const suporteID = suporteSelecionado?.getAttribute("datatype");
+      const selectTipoDeServicoID: any = tipoDeServicoID ? parseInt(tipoDeServicoID, 10) : undefined;
+      const selectInstaladorID: any = instaladorID ? parseInt(instaladorID, 10) : undefined;
+      const selectSuporteID: any = suporteID ? parseInt(suporteID, 10) : undefined;
+      const saveSupaDB: any = await SaveServiceInDB(
+        token,
+        clientName,
+        clientAddress,
+        equipmentAssets,
+        serialNumber,
+        selectTipoDeServicoID,
+        positioning,
+        selectInstaladorID,
+        selectSuporteID
+      );
+      setSaveSupaDB(saveSupaDB);
+      setSaveSheetsDB(saveSheetDB);
+      console.log("PAGE", saveSupaDB);
+    } catch (error) {
+      console.error("Erro ao salvar:", error);
+    }
   };
 
   const handleOnProvisioning = async (event: any) => {
@@ -231,7 +259,9 @@ export default function FormProvisionamento() {
 
   // Filtra apenas os instaladores
   const installers = Array.isArray(userExternal)
-    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador" && user.status == 1)
+    ? userExternal.filter(
+        (user) => user.cargoFuncionario === "Instalador" && user.status == 1
+      )
     : [];
 
   // Filtra apenas os funcionários do suporte
@@ -242,7 +272,7 @@ export default function FormProvisionamento() {
   // Verifica se userExternal é um array antes de fazer o mapeamento
   const servicesTypesOptions = Array.isArray(typesServices) ? (
     typesServices.map((type, index) => (
-      <option key={index} value={type.tipoDeServico}>
+      <option key={index} datatype={type.id} value={type.tipoDeServico}>
         {type.tipoDeServico}
       </option>
     ))
@@ -252,7 +282,7 @@ export default function FormProvisionamento() {
 
   const userExternalOptions = Array.isArray(installers) ? (
     installers.map((user, index) => (
-      <option key={index} value={user.nomeFuncionario}>
+      <option key={index} datatype={user.id} value={user.nomeFuncionario}>
         {user.cargoFuncionario == "Instalador" ? user.nomeFuncionario : ""}
       </option>
     ))
@@ -262,7 +292,7 @@ export default function FormProvisionamento() {
 
   const userInternalOptions = Array.isArray(userInternal) ? (
     userInternal.map((user, index) => (
-      <option key={index} value={user.nomeFuncionario}>
+      <option key={index} datatype={user.id} value={user.nomeFuncionario}>
         {user.cargoFuncionario == "Suporte" ? user.nomeFuncionario : ""}
       </option>
     ))
@@ -272,7 +302,7 @@ export default function FormProvisionamento() {
 
   return (
     <>
-      <div className={styles.main}>
+      <Container>
         <div className={styles.containerForm}>
           <form
             method="POST"
@@ -375,7 +405,6 @@ export default function FormProvisionamento() {
               optionTypes={userInternalOptions}
             ></Select>
           </form>
-
           <ButtonComponent
             btnId="btnProvisionar"
             btnName="btnProvisionar"
@@ -384,6 +413,7 @@ export default function FormProvisionamento() {
           >
             Provisionar
           </ButtonComponent>
+
           <ButtonComponent
             btnId="btnRemover"
             btnName="btnRemover"
@@ -438,7 +468,7 @@ export default function FormProvisionamento() {
             Copiar
           </ButtonComponent>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

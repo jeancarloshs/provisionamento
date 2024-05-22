@@ -2,6 +2,7 @@
 
 export default async function deleteService(storedToken: string, serviceId: number) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     "Accept": "*/*",
     "Authorization": `Bearer ${storedToken}`,
@@ -14,6 +15,6 @@ export default async function deleteService(storedToken: string, serviceId: numb
    });
    
    let data = await response.json();
-   console.log(data);
+  //  console.log(data);
    return data;
 }

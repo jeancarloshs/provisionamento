@@ -1,112 +1,128 @@
 .main {
-    margin-top: 4%;
-    margin-left: 220px;
-    padding: 0px 10px;
-    /* max-width: 1200px; */
-    display: flex;
-    flex: 2;
-    justify-content: center;
-  }
-  
-  .containerForm {
-    max-width: 300px;
-  }
-  
-  .formProvisionamento {
-    width: 300px;
-    margin-bottom: 10px;
-  }
-  
-  .formProvisionamento > input {
-    width: 300px;
-    margin-bottom: 10px;
-    padding: 5px 5px;
-    border-radius: 5px;
-  }
-  
-  .formSelect {
-    width: 300px;
-    margin-bottom: 10px;
-    padding: 5px 5px;
-    border-radius: 5px;
-  }
-  
+  margin-top: 4%;
+  margin-left: 220px;
+  padding: 0px 10px;
+  /* max-width: 1200px; */
+  display: flex;
+  flex: 2;
+  justify-content: center;
+}
+
+.containerForm {
+  max-width: 300px;
+}
+
+.formProvisionamento {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.formProvisionamento > input {
+  width: 300px;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+
+.formSelect {
+  width: 300px;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+
+.btn {
+  width: 145px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #fba828;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+}
+
+.btn:nth-of-type(2) {
+  margin-left: 10px;
+}
+
+.btn:last-child {
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: #bc4920;
+}
+
+.codigoGerado {
+  max-width: 620px;
+  display: block;
+  margin-left: 5%;
+}
+
+.scriptOLT {
+  padding: 10px 10px;
+  font-size: 14px;
+  height: 386px;
+  width: 610px;
+  color: white;
+  background-color: #1d2432;
+  border-radius: 5px !important;
+  resize: none;
+}
+
+.scriptOLT:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  border: 2px solid #6366f1;
+  /* border-color: #4F46E5; */
+}
+
+#scriptOLT {
+  height: 330px;
+  width: 580px;
+}
+
+.btnProvisionamento {
+  width: 145px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #fba828;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+  margin-right: 10px;
+}
+
+.btnProvisionamento:hover {
+  background-color: #bc4920;
+}
+
+.inputProvisionamento,
+.formSelect {
+  color: white;
+  outline: 2px solid transparent;
+  transition: all ease-in-out 0.2s;
+  background-color: #1d2432;
+  border-radius: 5px !important;
+}
+
+.inputProvisionamento:focus,
+.formSelect:focus {
+  box-shadow: 0 0 0 0;
+  outline: 2px solid #6366f1;
+  /* border-color: #4F46E5; */
+}
+
+@media screen and (max-width: 719px) and (min-width: 375px) {
   .btn {
-    width: 145px;
-    height: 40px;
-    cursor: pointer;
-    background-color: #fba828;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: all 0.5s ease;
+    width: 100%;
   }
   
   .btn:nth-of-type(2) {
-    margin-left: 10px;
+    margin-left: 0px;
   }
   
   .btn:last-child {
-    margin-left: 10px;
+    margin-left: 0px;
   }
-  
-  .btn:hover {
-    background-color: #BC4920;
-  }
-  
-  .codigoGerado {
-    max-width: 620px;
-    display: block;
-    margin-left: 5%;
-  }
-  
-  .scriptOLT {
-    padding: 10px 10px;
-    font-size: 14px;
-    height: 386px;
-    width: 610px;
-    color: white;
-    background-color: #1D2432;
-    border-radius: 5px !important;
-    resize: none;
-  }
-  
-  .scriptOLT:focus {
-    box-shadow: 0 0 0 0;
-    outline: 0;
-    border: 2px solid #6366F1;
-    /* border-color: #4F46E5; */
-  }
-  
-  #scriptOLT {
-    height: 330px;
-    width: 580px;
-  }
-  
-  .btnProvisionamento {
-    width: 145px;
-    height: 40px;
-    cursor: pointer;
-    background-color: #fba828;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: all 0.5s ease;
-    margin-right: 10px;
-  }
-  
-  .btnProvisionamento:hover {
-    background-color: #BC4920;
-  }
-  
-  .inputProvisionamento, .formSelect {
-    color: white;
-    outline: 2px solid transparent;
-    transition: all ease-in-out 0.2s;
-    background-color: #1D2432;
-    border-radius: 5px !important;
-  }
-  
-  .inputProvisionamento:focus, .formSelect:focus {
-    box-shadow: 0 0 0 0;
-    outline: 2px solid #6366F1;
-    /* border-color: #4F46E5; */
-  }
+}

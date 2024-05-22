@@ -13,6 +13,6 @@ export default async function listGetServices(storedToken: string) {
   });
 
   let data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data
 }

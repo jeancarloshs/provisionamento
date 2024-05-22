@@ -12,6 +12,6 @@ export default async function deleteUser(storedToken: string, userId: string) {
    });
    
    let data = await response.json();
-   console.log(data);
+  //  console.log(data);
    return data;   
 }

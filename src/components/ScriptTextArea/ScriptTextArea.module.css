@@ -4,7 +4,7 @@
   height: 386px;
   width: 610px;
   color: white;
-  background-color: #1D2432;
+  background-color: #1d2432;
   outline: 2px solid transparent;
   transition: all ease-in-out 0.2s;
   border-radius: 5px !important;
@@ -14,7 +14,7 @@
 .scriptOLT:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
-  outline: 2px solid #6366F1;
+  outline: 2px solid #6366f1;
   /* border-color: #4F46E5; */
 }
 
@@ -32,9 +32,19 @@
   }
 }
 
-/* @media screen and (max-height: 1000px) {
+@media screen and (max-width: 720px) {
   .scriptOLT {
-    max-width: 610px;
-    width: 90%;
+    /* max-width: 610px; */
+    width: 300px;
+    height: 395px;
   }
-} */
+}
+
+@media screen and (max-width: 719px) and (min-width: 375px) {
+  .scriptOLT {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: -15px;
+  }
+}

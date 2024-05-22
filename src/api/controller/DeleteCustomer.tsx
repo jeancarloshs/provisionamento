@@ -2,6 +2,7 @@
 
 export default async function deleteCustomer(storedToken: string, customerId: number) {
   let urlApi = process.env.NEXT_PUBLIC_URL_API;
+  let app = sessionStorage.getItem("app");
   let headersList = {
     "Accept": "*/*",
     "Authorization": `Bearer ${storedToken}`,
@@ -14,6 +15,6 @@ export default async function deleteCustomer(storedToken: string, customerId: nu
    });
    
    let data = await response.json();
-   console.log(data);
+  //  console.log(data);
    return data;
 }

@@ -22,6 +22,7 @@ import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import ButtonComponent from "../Button/ButtonComponent";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
 import RemovingVlanModel from "@/api/models/RemovingVlan";
+import Container from "../Container/ContainerComponent";
 
 export default function FormVlan() {
   const [token, setToken] = useState<String | null>("");
@@ -253,7 +254,7 @@ export default function FormVlan() {
 
   return (
     <>
-      <div className={styles.main}>
+      <Container>
         <div className={styles.containerForm}>
           <form
             method="POST"
@@ -366,7 +367,7 @@ export default function FormVlan() {
             Copiar
           </ButtonComponent>
         </div>
-      </div>
+      </Container>
     </>
   );
 }
