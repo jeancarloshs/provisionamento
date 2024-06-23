@@ -23,6 +23,9 @@ import ButtonComponent from "../Button/ButtonComponent";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
 import RemovingVlanModel from "@/api/models/RemovingVlan";
 import Container from "../Container/ContainerComponent";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function FormVlan() {
   const [token, setToken] = useState<String | null>("");
@@ -113,7 +116,7 @@ export default function FormVlan() {
   };
 
   const handleOnProvisioning = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     let vlan = provisionamentoState.vlan.trim();
     let vlanName = provisionamentoState.vlanName.trim();
 
@@ -252,6 +255,39 @@ export default function FormVlan() {
     <option value="">Carregando...</option>
   );
 
+  interface IFormProvising {
+    nome: string;
+    endereco: string;
+    patrimonio: string;
+    serialNumber: string;
+    posicionamento: string;
+    tipoDeServico: string;
+    instalador: string;
+    suporte: string;
+    vlan: string;
+  }
+
+  const schema = yup.object({
+    nome: yup.string().required("Campo Nome é obrigatório").min(3, "Você precisa inserir pelo menos 3 caracteres."),
+    endereco: yup.string().required("Campo Endereço é obrigatório"),
+    patrimonio: yup.string().required("Campo Patrimonio é obrigatório"),
+    serialNumber: yup.string().required("Campo Serial é obrigatório"),
+    posicionamento: yup.string().required("Campo Posicionamento é obrigatório"),
+    tipoDeServico: yup.string().required("Campo Tipo de Serviço é obrigatório"),
+    instalador: yup.string().required("Campo Instalador é obrigatório"),
+    suporte: yup.string().required("Campo Suporte é obrigatório"),
+    vlan: yup.string().required("Campo Vlan é obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormProvising>({
+    resolver: yupResolver(schema),
+  });
+
+
   return (
     <>
       <Container>
@@ -266,6 +302,8 @@ export default function FormVlan() {
               inputType="text"
               inputId="nome"
               inputName="nome"
+              register={register}
+              error={errors.nome}
               inputValue={provisionamentoState.vlanName}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "vlanName")
@@ -278,6 +316,8 @@ export default function FormVlan() {
               inputType="text"
               inputId="vlan"
               inputName="vlan"
+              register={register}
+              error={errors.vlan}
               inputValue={provisionamentoState.vlan}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "vlan")
@@ -285,46 +325,11 @@ export default function FormVlan() {
               inputPlaceHolder="VLAN"
             />
 
-            {/* <Select
-              selectLabelHtmlFor="tipoDeServico"
-              selectName="tipoDeServico"
-              selectId="tipoDeServico"
-              selectValue={provisionamentoState.serviceType}
-              selectOnChange={(event) =>
-                handleOnChangeProvisioning(event, "serviceType")
-              }
-              optionValue="Tipo"
-              optionTypes={servicesTypesOptions}
-            ></Select>
-
-            <Select
-              selectLabelHtmlFor="instalador"
-              selectName="instalador"
-              selectId="instalador"
-              selectValue={provisionamentoState.externalTechnician}
-              selectOnChange={(event) =>
-                handleOnChangeProvisioning(event, "externalTechnician")
-              }
-              optionValue="Instalador"
-              optionTypes={userExternalOptions}
-            ></Select>
-
-            <Select
-              selectLabelHtmlFor="suporte"
-              selectName="suporte"
-              selectId="suporte"
-              selectValue={provisionamentoState.internalTechnician}
-              selectOnChange={(event) =>
-                handleOnChangeProvisioning(event, "internalTechnician")
-              }
-              optionValue="Suporte"
-              optionTypes={userInternalOptions}
-            ></Select> */}
           </form>
           <ButtonComponent
             btnId="btnProvisionar"
             btnName="btnProvisionar"
-            btnOnClick={handleOnProvisioning}
+            btnOnClick={handleSubmit(handleOnProvisioning)}
             btnClassName={styles.btn}
           >
             Criar VLAN

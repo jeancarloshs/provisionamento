@@ -5,12 +5,11 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import styles from "./SideBar.module.css";
 import RootLayout from "@/app/layout";
-import Provisionamento from "@/pages/provisionamento";
-import NavBar from "../NavBar/NavBar";
 import jwt_decode from "jwt-decode";
 import UserLoged from "@/api/controller/UserLogedController";
 import userConnected from "@/api/middleware/userConnected";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Link from "next/link";
 
 let pages = [
   { name: "/", rota: "/" },
@@ -104,6 +103,11 @@ export default function SideBar() {
     };
   }, []);
 
+  const handleClick = (href: any, event: any) => {
+    event.preventDefault(); // Previna o comportamento padrão do link
+    router.push(href); // Navegue para a nova rota
+  };
+
   const exit = () => {
     sessionStorage.removeItem("Token");
     sessionStorage.removeItem("app");
@@ -118,7 +122,11 @@ export default function SideBar() {
           <>
             {listLinksActivation.map((link, index) => (
               <li key={index} className={styles.linksLi}>
-                <a className={styles.linksLi} key={link.name} href={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(event) => handleClick(link.href, event)}
+                  className={styles.linksLi}
+                >
                   {link.name}
                 </a>
               </li>
@@ -133,7 +141,11 @@ export default function SideBar() {
           <>
             {listLinksOptions.map((link, index) => (
               <li key={index}>
-                <a className={styles.linksLi} key={link.name} href={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(event) => handleClick(link.href, event)}
+                  className={styles.linksLi}
+                >
                   {link.name}
                 </a>
               </li>
@@ -146,7 +158,11 @@ export default function SideBar() {
     } else {
       return (
         <li className={styles.li}>
-          <a key={props.link.name} href={props.link.href}>
+          <a
+            href={props.link.href}
+            onClick={(event) => handleClick(props.link.href, event)}
+            className={styles.linksLi}
+          >
             {props.link.name}
           </a>
         </li>
@@ -176,7 +192,14 @@ export default function SideBar() {
                 <RenderLi key={link.name} link={link} />
               ))}
               <li className={styles.exit}>
-                <a href={pages[0].name} onClick={exit}>
+                <a
+                  href={pages[0].name}
+                  onClick={(event) => {
+                    exit();
+                    handleClick(pages[0].name, event);
+                  }}
+                  className={styles.linksLi}
+                >
                   Sair
                 </a>
               </li>
