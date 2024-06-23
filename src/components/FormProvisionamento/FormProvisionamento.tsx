@@ -162,7 +162,7 @@ export default function FormProvisionamento() {
   };
 
   const handleOnProvisioning = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
     let equipmentAssets = provisionamentoState.equipmentAssets.trim();

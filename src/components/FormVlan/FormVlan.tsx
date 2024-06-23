@@ -116,7 +116,7 @@ export default function FormVlan() {
   };
 
   const handleOnProvisioning = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     let vlan = provisionamentoState.vlan.trim();
     let vlanName = provisionamentoState.vlanName.trim();
 
