@@ -11,6 +11,9 @@ import Input from "../Input/Input";
 import Select from "../Select/Select";
 import { ModalProps } from "@/api/types/types";
 import { SaveNewUser, UpdateUser } from "@/api/controller/SaveOrUpdateUser";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function Modal(props: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -147,6 +150,28 @@ export default function Modal(props: ModalProps) {
     handleModalSave;
   }, []);
 
+  interface IModal {
+    nome: string;
+    email: string;
+    senha: string;
+    cargo: string;
+  }
+
+  const schema = yup.object({
+    nome: yup.string().required("Campo Nome é obrigatório").min(3, "Você precisa inserir pelo menos 3 caracteres."),
+    email: yup.string().required("Campo Email é obrigatório"),
+    senha: yup.string().required("Campo Senha é obrigatório").min(8, "Você precisa inserir pelo menos 8 caracteres."),
+    cargo: yup.string().required("Cargo é obrigatório")
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IModal>({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <>
       {props.hasImage == true ? (
@@ -197,6 +222,8 @@ export default function Modal(props: ModalProps) {
                         inputType="text"
                         inputId="nome"
                         inputName="nome"
+                        register={register}
+                        error={errors.nome}
                         inputValue={modalInfo.userName}
                         inputOnChange={(event) =>
                           handleModalChange(event, "userName")
@@ -208,6 +235,8 @@ export default function Modal(props: ModalProps) {
                         inputType="email"
                         inputId="email"
                         inputName="email"
+                        register={register}
+                        error={errors.email}
                         inputValue={modalInfo.userEmail}
                         inputOnChange={(event) =>
                           handleModalChange(event, "userEmail")
@@ -225,6 +254,8 @@ export default function Modal(props: ModalProps) {
                         inputType={showPassword ? "text" : "password"}
                         inputId="senha"
                         inputName="senha"
+                        register={register}
+                        error={errors.senha}
                         inputValue={modalInfo.userPassword}
                         inputOnChange={(event) =>
                           handleModalChange(event, "userPassword")
@@ -262,6 +293,8 @@ export default function Modal(props: ModalProps) {
                         selectLabelHtmlFor="cargo"
                         selectName="cargo"
                         selectId="cargo"
+                        register={register}
+                        error={errors.cargo}
                         selectValue={modalInfo.employeePosition}
                         selectOnChange={(event) =>
                           handleModalChange(event, "employeePosition")
@@ -289,7 +322,7 @@ export default function Modal(props: ModalProps) {
                   <button
                     className="bg-[#fba828] text-white hover:bg-[#BC4920] active:bg-[#7a3015] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={handleFormPost}
+                    onClick={handleSubmit(handleFormPost)}
                   // onClick={() => {
                   //   handleModalSave();
                   //   // setShowModal(false);
