@@ -18,11 +18,14 @@ import SearchByPositioning from "@/api/models/SearchByPositioning";
 import BridgeProvisioningWithWifiModel from "@/api/models/BridgeProvisioningWithWifi";
 import BridgeProvisioningWithoutWifiModel from "@/api/models/BridgeProvisioningWithoutWifi";
 import Input from "../Input/Input";
-import Select from '../Select/Select';
+import Select from "../Select/Select";
 import ButtonComponent from "../Button/ButtonComponent";
 import ScriptTextArea from "../ScriptTextArea/ScriptTextArea";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
 import Container from "../Container/ContainerComponent";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function FormBridge() {
   const [token, setToken] = useState<String | null>("");
@@ -249,7 +252,9 @@ export default function FormBridge() {
 
   // Filtra apenas os instaladores
   const installers = Array.isArray(userExternal)
-    ? userExternal.filter((user) => user.cargoFuncionario === "Instalador" && user.status == 1)
+    ? userExternal.filter(
+        (user) => user.cargoFuncionario === "Instalador" && user.status == 1
+      )
     : [];
 
   // Filtra apenas os funcionários do suporte
@@ -288,6 +293,40 @@ export default function FormBridge() {
     <option value="">Carregando...</option>
   );
 
+  interface IFormProvising {
+    nome: string;
+    endereco: string;
+    patrimonio: string;
+    serialNumber: string;
+    posicionamento: string;
+    tipoDeServico: string;
+    instalador: string;
+    suporte: string
+    vlan: string;
+    tipoDeOnu: string;
+  }
+
+  const schema = yup.object({
+    nome: yup.string().required("Campo Nome é obrigatório").min(3, "Você precisa inserir pelo menos 3 caracteres."),
+    endereco: yup.string().required("Campo Endereço é obrigatório"),
+    patrimonio: yup.string().required("Campo Patrimonio é obrigatório"),
+    serialNumber: yup.string().required("Campo Serial é obrigatório"),
+    posicionamento: yup.string().required("Campo Posicionamento é obrigatório"),
+    tipoDeServico: yup.string().required("Campo Tipo de Serviço é obrigatório"),
+    instalador: yup.string().required("Campo Instalador é obrigatório"),
+    suporte: yup.string().required("Campo Suporte é obrigatório"),
+    vlan: yup.string().required("Campo VLAN é obrigatório"),
+    tipoDeOnu: yup.string().required("Campo Tipo de ONU é obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormProvising>({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <>
       <Container>
@@ -302,6 +341,8 @@ export default function FormBridge() {
               inputType="text"
               inputId="nome"
               inputName="nome"
+              register={register}
+              error={errors.nome}
               inputValue={provisionamentoState.clientName}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "clientName")
@@ -314,6 +355,8 @@ export default function FormBridge() {
               inputType="text"
               inputId="endereco"
               inputName="endereco"
+              register={register}
+              error={errors.endereco}
               inputValue={provisionamentoState.clientAddress}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "clientAddress")
@@ -326,6 +369,8 @@ export default function FormBridge() {
               inputType="text"
               inputId="patrimonio"
               inputName="patrimonio"
+              register={register}
+              error={errors.patrimonio}
               inputValue={provisionamentoState.equipmentAssets}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "equipmentAssets")
@@ -338,6 +383,8 @@ export default function FormBridge() {
               inputType="text"
               inputId="serialNumber"
               inputName="serialNumber"
+              register={register}
+              error={errors.serialNumber}
               inputValue={provisionamentoState.serialNumber}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "serialNumber")
@@ -350,6 +397,8 @@ export default function FormBridge() {
               inputType="text"
               inputId="posicionamento"
               inputName="posicionamento"
+              register={register}
+              error={errors.posicionamento}
               inputValue={provisionamentoState.positioning}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "positioning")
@@ -362,6 +411,8 @@ export default function FormBridge() {
               inputType="text"
               inputId="vlan"
               inputName="vlan"
+              register={register}
+              error={errors.vlan}
               inputValue={provisionamentoState.vlan}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "vlan")
@@ -370,9 +421,11 @@ export default function FormBridge() {
             />
 
             <label htmlFor="tipoDeOnu" className="selectLabel"></label>
+            <p className="text-[12px] text-red-600">{errors?.tipoDeOnu?.message}</p>
             <select
-              name="tipoDeOnu"
+              // name="tipoDeOnu"
               id="tipoDeOnu"
+              {...register("tipoDeOnu")}
               value={provisionamentoState.onuType}
               onChange={(event) => handleOnChangeProvisioning(event, "onuType")}
               className={styles.formSelect}
@@ -391,6 +444,8 @@ export default function FormBridge() {
               selectLabelHtmlFor="tipoDeServico"
               selectName="tipoDeServico"
               selectId="tipoDeServico"
+              register={register}
+              error={errors.tipoDeServico}
               selectValue={provisionamentoState.serviceType}
               selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "serviceType")
@@ -403,6 +458,8 @@ export default function FormBridge() {
               selectLabelHtmlFor="instalador"
               selectName="instalador"
               selectId="instalador"
+              register={register}
+              error={errors.instalador}
               selectValue={provisionamentoState.externalTechnician}
               selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "externalTechnician")
@@ -415,6 +472,8 @@ export default function FormBridge() {
               selectLabelHtmlFor="suporte"
               selectName="suporte"
               selectId="suporte"
+              register={register}
+              error={errors.suporte}
               selectValue={provisionamentoState.internalTechnician}
               selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "internalTechnician")
@@ -426,7 +485,7 @@ export default function FormBridge() {
           <ButtonComponent
             btnId="btnProvisionar"
             btnName="btnProvisionar"
-            btnOnClick={handleOnProvisioning}
+            btnOnClick={handleSubmit(handleOnProvisioning)}
             btnClassName={styles.btn}
           >
             Provisionar

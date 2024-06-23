@@ -22,6 +22,9 @@ import Input from "../Input/Input";
 import Select from "../Select/Select";
 import removeAccentuation from "@/api/helpers/removeAccentuation";
 import Container from "../Container/ContainerComponent";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function FormProvisionamento() {
   const [token, setToken] = useState<String | null>("");
@@ -111,18 +114,34 @@ export default function FormProvisionamento() {
       internalTechnician
     );
     try {
-      const tipoDeServicoValue = document.getElementById("tipoDeServico") as HTMLSelectElement | null;
-      const instaladorValue = document.getElementById("instalador") as HTMLSelectElement | null;
-      const suporteValue = document.getElementById("suporte") as HTMLSelectElement | null;
-      const tipoDeServicoSelecionado = tipoDeServicoValue?.options[tipoDeServicoValue.selectedIndex];
-      const tipoDeServicoID = tipoDeServicoSelecionado?.getAttribute("datatype");
-      const instaladorSelecionado = instaladorValue?.options[instaladorValue.selectedIndex];
+      const tipoDeServicoValue = document.getElementById(
+        "tipoDeServico"
+      ) as HTMLSelectElement | null;
+      const instaladorValue = document.getElementById(
+        "instalador"
+      ) as HTMLSelectElement | null;
+      const suporteValue = document.getElementById(
+        "suporte"
+      ) as HTMLSelectElement | null;
+      const tipoDeServicoSelecionado =
+        tipoDeServicoValue?.options[tipoDeServicoValue.selectedIndex];
+      const tipoDeServicoID =
+        tipoDeServicoSelecionado?.getAttribute("datatype");
+      const instaladorSelecionado =
+        instaladorValue?.options[instaladorValue.selectedIndex];
       const instaladorID = instaladorSelecionado?.getAttribute("datatype");
-      const suporteSelecionado = suporteValue?.options[suporteValue.selectedIndex];
+      const suporteSelecionado =
+        suporteValue?.options[suporteValue.selectedIndex];
       const suporteID = suporteSelecionado?.getAttribute("datatype");
-      const selectTipoDeServicoID: any = tipoDeServicoID ? parseInt(tipoDeServicoID, 10) : undefined;
-      const selectInstaladorID: any = instaladorID ? parseInt(instaladorID, 10) : undefined;
-      const selectSuporteID: any = suporteID ? parseInt(suporteID, 10) : undefined;
+      const selectTipoDeServicoID: any = tipoDeServicoID
+        ? parseInt(tipoDeServicoID, 10)
+        : undefined;
+      const selectInstaladorID: any = instaladorID
+        ? parseInt(instaladorID, 10)
+        : undefined;
+      const selectSuporteID: any = suporteID
+        ? parseInt(suporteID, 10)
+        : undefined;
       const saveSupaDB: any = await SaveServiceInDB(
         token,
         clientName,
@@ -300,6 +319,36 @@ export default function FormProvisionamento() {
     <option value="">Carregando...</option>
   );
 
+  interface IFormProvising {
+    nome: string;
+    endereco: string;
+    patrimonio: string;
+    serialNumber: string;
+    posicionamento: string;
+    tipoDeServico: string;
+    instalador: string;
+    suporte: string
+  }
+
+  const schema = yup.object({
+    nome: yup.string().required("Campo Nome é obrigatório").min(3, "Você precisa inserir pelo menos 3 caracteres."),
+    endereco: yup.string().required("Campo Endereço é obrigatório"),
+    patrimonio: yup.string().required("Campo Patrimonio é obrigatório"),
+    serialNumber: yup.string().required("Campo Serial é obrigatório"),
+    posicionamento: yup.string().required("Campo Posicionamento é obrigatório"),
+    tipoDeServico: yup.string().required("Campo Tipo de Serviço é obrigatório"),
+    instalador: yup.string().required("Campo Instalador é obrigatório"),
+    suporte: yup.string().required("Campo Suporte é obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormProvising>({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <>
       <Container>
@@ -314,6 +363,8 @@ export default function FormProvisionamento() {
               inputType="text"
               inputId="nome"
               inputName="nome"
+              register={register}
+              error={errors.nome}
               inputValue={provisionamentoState.clientName}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "clientName")
@@ -326,6 +377,8 @@ export default function FormProvisionamento() {
               inputType="text"
               inputId="endereco"
               inputName="endereco"
+              register={register}
+              error={errors.endereco}
               inputValue={provisionamentoState.clientAddress}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "clientAddress")
@@ -338,6 +391,8 @@ export default function FormProvisionamento() {
               inputType="text"
               inputId="patrimonio"
               inputName="patrimonio"
+              register={register}
+              error={errors.patrimonio}
               inputValue={provisionamentoState.equipmentAssets}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "equipmentAssets")
@@ -350,6 +405,8 @@ export default function FormProvisionamento() {
               inputType="text"
               inputId="serialNumber"
               inputName="serialNumber"
+              register={register}
+              error={errors.serialNumber}
               inputValue={provisionamentoState.serialNumber}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "serialNumber")
@@ -362,6 +419,8 @@ export default function FormProvisionamento() {
               inputType="text"
               inputId="posicionamento"
               inputName="posicionamento"
+              register={register}
+              error={errors.posicionamento}
               inputValue={provisionamentoState.positioning}
               inputOnChange={(event) =>
                 handleOnChangeProvisioning(event, "positioning")
@@ -373,6 +432,8 @@ export default function FormProvisionamento() {
               selectLabelHtmlFor="tipoDeServico"
               selectName="tipoDeServico"
               selectId="tipoDeServico"
+              register={register}
+              error={errors.tipoDeServico}
               selectValue={provisionamentoState.serviceType}
               selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "serviceType")
@@ -385,6 +446,8 @@ export default function FormProvisionamento() {
               selectLabelHtmlFor="instalador"
               selectName="instalador"
               selectId="instalador"
+              register={register}
+              error={errors.instalador}
               selectValue={provisionamentoState.externalTechnician}
               selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "externalTechnician")
@@ -397,6 +460,8 @@ export default function FormProvisionamento() {
               selectLabelHtmlFor="suporte"
               selectName="suporte"
               selectId="suporte"
+              register={register}
+              error={errors.suporte}
               selectValue={provisionamentoState.internalTechnician}
               selectOnChange={(event) =>
                 handleOnChangeProvisioning(event, "internalTechnician")
@@ -408,7 +473,7 @@ export default function FormProvisionamento() {
           <ButtonComponent
             btnId="btnProvisionar"
             btnName="btnProvisionar"
-            btnOnClick={handleOnProvisioning}
+            btnOnClick={handleSubmit(handleOnProvisioning)}
             btnClassName={styles.btn}
           >
             Provisionar
