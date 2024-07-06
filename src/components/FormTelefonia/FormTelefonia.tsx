@@ -94,7 +94,7 @@ export default function FormTelefonia() {
   };
 
   const handleChangeSaveSheetsDb = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
     let equipmentAssets = provisionamentoState.equipmentAssets.trim();
@@ -527,7 +527,7 @@ export default function FormTelefonia() {
           <ButtonComponent
             btnId="btnEnviaPlanilha"
             btnName="btnEnviaPlanilha"
-            btnOnClick={handleChangeSaveSheetsDb}
+            btnOnClick={handleSubmit(handleChangeSaveSheetsDb)}
           >
             Enviar p/ Planilha
           </ButtonComponent>

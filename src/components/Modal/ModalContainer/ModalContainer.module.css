@@ -1,0 +1,67 @@
+.containerForm {
+    max-width: 450px;
+  }
+  
+  .formProvisionamento {
+    width: 100%;
+    /* margin-bottom: 10px; */
+  }
+  
+  .formProvisionamento > input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: black;
+    background-color: rgb(227, 228, 236);
+  }
+  
+  .formProvisionamento > select {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: black;
+    background-color: rgb(227, 228, 236);
+  }
+  
+  .formProvisionamento > input:focus,
+  .formProvisionamento > select:focus {
+    box-shadow: 0 0 0 0;
+    outline: 2px solid #059669;
+    /* border-color: #4F46E5; */
+  }
+  
+  .spinner, .imageEdite {
+    width: 25px; /* Defina o valor desejado para o spinner */
+    height: 25px; /* Defina o valor desejado para o spinner */
+    display: flex;
+    padding: 3px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+  .imageEdite:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 3px black);
+  }
+  
+  .label {
+    padding-right: 5px;
+  }
+  
+  .inputLabel {
+    /* margin-right: 5px;
+    margin-bottom: 10px; */
+    margin: 0 5px 15px 0;
+    padding: 5px 5px;
+  }
+  
+  .btnPassWord {
+    width: 35px;
+    height: 35px;
+    padding: 5px 5px;
+    margin-left: 90%;
+  }
