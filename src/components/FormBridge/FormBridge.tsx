@@ -94,7 +94,7 @@ export default function FormBridge() {
   };
 
   const handleChangeSaveSheetsDb = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
     let equipmentAssets = provisionamentoState.equipmentAssets.trim();

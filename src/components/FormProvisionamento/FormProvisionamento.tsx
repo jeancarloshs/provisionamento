@@ -92,7 +92,7 @@ export default function FormProvisionamento() {
   };
 
   const handleChangeSaveSheetsDb = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     const token = sessionStorage.getItem("Token") as string;
     let clientName = provisionamentoState.clientName.trim();
     let clientAddress = provisionamentoState.clientAddress.trim();
