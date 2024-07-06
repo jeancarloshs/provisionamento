@@ -527,7 +527,7 @@ export default function FormTelefonia() {
           <ButtonComponent
             btnId="btnEnviaPlanilha"
             btnName="btnEnviaPlanilha"
-            btnOnClick={handleChangeSaveSheetsDb}
+            btnOnClick={handleSubmit(handleChangeSaveSheetsDb)}
           >
             Enviar p/ Planilha
           </ButtonComponent>

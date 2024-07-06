@@ -532,7 +532,7 @@ export default function FormBridge() {
           <ButtonComponent
             btnId="btnEnviaPlanilha"
             btnName="btnEnviaPlanilha"
-            btnOnClick={handleChangeSaveSheetsDb}
+            btnOnClick={handleSubmit(handleChangeSaveSheetsDb)}
           >
             Enviar p/ Planilha
           </ButtonComponent>

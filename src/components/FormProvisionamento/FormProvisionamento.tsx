@@ -521,7 +521,7 @@ export default function FormProvisionamento() {
           <ButtonComponent
             btnId="btnEnviaPlanilha"
             btnName="btnEnviaPlanilha"
-            btnOnClick={handleChangeSaveSheetsDb}
+            btnOnClick={handleSubmit(handleChangeSaveSheetsDb)}
           >
             Enviar p/ Planilha
           </ButtonComponent>
